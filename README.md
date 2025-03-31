@@ -1,5 +1,7 @@
 # DACNPM
  # Bài này được chạy bởi xampp, nếu bạn muốn dùng giống tôi, hãy tải xampp, copy folder này vào htdoc và khởi chạy mysql của xampp. Import file database trong mục database vào để đảm bảo chương trình chạy đúng.
+
+ # CHÚ Ý: ĐỔI TÊN FILE .ENV.EXAMPLE THÀNH .ENV
  
  # Do chương trình có phần cũ, nên hãy lưu ý hạ phiên bản những pakage nếu gặp lỗi(sau khi sử dụng npm adit).
  

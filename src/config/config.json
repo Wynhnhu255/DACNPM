@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "newpassword",
+        "password": "",
         "database": "doctorcare",
         "host": "localhost",
         "dialect": "mysql",
