@@ -1,11 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2020 at 02:41 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: Apr 02, 2025 at 08:25 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,16 +22,14 @@
 --
 CREATE DATABASE IF NOT EXISTS `doctorcare` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `doctorcare`;
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `clinics`
 --
 
-DROP TABLE IF EXISTS `clinics`;
-CREATE TABLE IF NOT EXISTS `clinics` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `clinics` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
@@ -37,9 +39,8 @@ CREATE TABLE IF NOT EXISTS `clinics` (
   `image` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `clinics`
@@ -58,9 +59,8 @@ INSERT INTO `clinics` (`id`, `name`, `address`, `phone`, `introductionHTML`, `in
 -- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
   `doctorId` int(11) DEFAULT NULL,
   `timeBooking` varchar(255) DEFAULT NULL,
   `dateBooking` varchar(255) DEFAULT NULL,
@@ -70,9 +70,8 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `comments`
@@ -88,17 +87,15 @@ INSERT INTO `comments` (`id`, `doctorId`, `timeBooking`, `dateBooking`, `name`, 
 -- Table structure for table `doctor_users`
 --
 
-DROP TABLE IF EXISTS `doctor_users`;
-CREATE TABLE IF NOT EXISTS `doctor_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `doctor_users` (
+  `id` int(11) NOT NULL,
   `doctorId` int(11) NOT NULL,
   `clinicId` int(11) NOT NULL,
   `specializationId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctor_users`
@@ -118,9 +115,8 @@ INSERT INTO `doctor_users` (`id`, `doctorId`, `clinicId`, `specializationId`, `c
 -- Table structure for table `extrainfos`
 --
 
-DROP TABLE IF EXISTS `extrainfos`;
-CREATE TABLE IF NOT EXISTS `extrainfos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `extrainfos` (
+  `id` int(11) NOT NULL,
   `patientId` int(11) DEFAULT NULL,
   `historyBreath` text DEFAULT NULL,
   `placeId` int(11) DEFAULT NULL,
@@ -129,9 +125,8 @@ CREATE TABLE IF NOT EXISTS `extrainfos` (
   `moreInfo` text DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -139,9 +134,8 @@ CREATE TABLE IF NOT EXISTS `extrainfos` (
 -- Table structure for table `patients`
 --
 
-DROP TABLE IF EXISTS `patients`;
-CREATE TABLE IF NOT EXISTS `patients` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `patients` (
+  `id` int(11) NOT NULL,
   `doctorId` int(11) NOT NULL,
   `statusId` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -157,9 +151,8 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `isTakeCare` tinyint(1) NOT NULL DEFAULT 0,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patients`
@@ -175,15 +168,13 @@ INSERT INTO `patients` (`id`, `doctorId`, `statusId`, `name`, `phone`, `dateBook
 -- Table structure for table `places`
 --
 
-DROP TABLE IF EXISTS `places`;
-CREATE TABLE IF NOT EXISTS `places` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `places` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `places`
@@ -202,9 +193,8 @@ INSERT INTO `places` (`id`, `name`, `createdAt`, `updatedAt`, `deletedAt`) VALUE
 -- Table structure for table `posts`
 --
 
-DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `contentMarkdown` text DEFAULT NULL,
   `contentHTML` text DEFAULT NULL,
@@ -216,9 +206,8 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `image` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`
@@ -241,15 +230,13 @@ INSERT INTO `posts` (`id`, `title`, `contentMarkdown`, `contentHTML`, `forDoctor
 -- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roles`
@@ -266,9 +253,8 @@ INSERT INTO `roles` (`id`, `name`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
 -- Table structure for table `schedules`
 --
 
-DROP TABLE IF EXISTS `schedules`;
-CREATE TABLE IF NOT EXISTS `schedules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `schedules` (
+  `id` int(11) NOT NULL,
   `doctorId` int(11) NOT NULL,
   `date` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
@@ -276,9 +262,8 @@ CREATE TABLE IF NOT EXISTS `schedules` (
   `sumBooking` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=297 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -286,11 +271,8 @@ CREATE TABLE IF NOT EXISTS `schedules` (
 -- Table structure for table `sequelizemeta`
 --
 
-DROP TABLE IF EXISTS `sequelizemeta`;
-CREATE TABLE IF NOT EXISTS `sequelizemeta` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`name`),
-  UNIQUE KEY `name` (`name`)
+CREATE TABLE `sequelizemeta` (
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -318,15 +300,20 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 -- Table structure for table `session`
 --
 
-DROP TABLE IF EXISTS `session`;
-CREATE TABLE IF NOT EXISTS `session` (
+CREATE TABLE `session` (
   `sid` varchar(36) NOT NULL,
   `expires` datetime DEFAULT NULL,
   `data` text DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`sid`, `expires`, `data`, `createdAt`, `updatedAt`) VALUES
+('gbKJAPXYDkkoJ1NxDb84U8thkGYFygMr', '2025-04-04 01:19:56', '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2025-04-03T18:19:56.325Z\",\"secure\":false,\"httpOnly\":false,\"path\":\"/\"},\"passport\":{\"user\":1}}', '2025-04-03 01:18:38', '2025-04-03 01:19:56');
 
 -- --------------------------------------------------------
 
@@ -334,17 +321,15 @@ CREATE TABLE IF NOT EXISTS `session` (
 -- Table structure for table `specializations`
 --
 
-DROP TABLE IF EXISTS `specializations`;
-CREATE TABLE IF NOT EXISTS `specializations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `specializations` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `specializations`
@@ -365,15 +350,13 @@ INSERT INTO `specializations` (`id`, `name`, `description`, `image`, `createdAt`
 -- Table structure for table `statuses`
 --
 
-DROP TABLE IF EXISTS `statuses`;
-CREATE TABLE IF NOT EXISTS `statuses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `statuses` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `statuses`
@@ -392,17 +375,15 @@ INSERT INTO `statuses` (`id`, `name`, `createdAt`, `updatedAt`, `deletedAt`) VAL
 -- Table structure for table `supporterlogs`
 --
 
-DROP TABLE IF EXISTS `supporterlogs`;
-CREATE TABLE IF NOT EXISTS `supporterlogs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `supporterlogs` (
+  `id` int(11) NOT NULL,
   `patientId` int(11) DEFAULT NULL,
   `supporterId` int(11) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `supporterlogs`
@@ -422,9 +403,8 @@ INSERT INTO `supporterlogs` (`id`, `patientId`, `supporterId`, `content`, `creat
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -437,26 +417,202 @@ CREATE TABLE IF NOT EXISTS `users` (
   `isActive` tinyint(1) DEFAULT 1,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `phone`, `avatar`, `gender`, `description`, `roleId`, `isActive`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'admin - HaryPhamDev', 'admin@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'New York', '088456732', 'admin.png', 'male', NULL, 1, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
-(2, 'Doctor - Evan', 'doctor@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor3.jpg', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 19:46:18', NULL),
-(3, 'Doctor - Ben', 'doctor5@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor4.jpg', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 20:19:55', NULL),
-(4, 'Doctor - Hary Pham', 'doctor10@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor1.jpg', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 20:20:15', NULL),
-(5, 'Doctor - Clever', 'doctor1@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor2.jpg', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 20:20:26', NULL),
-(6, 'Doctor - Sam', 'doctor2@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor3.jpg', 'male', '      ', 2, 1, '2020-11-13 19:44:36', '2020-11-14 19:49:26', NULL),
-(7, 'Doctor - Eric Pham', 'doctor3@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor4.jpg', 'male', '      ', 2, 1, '2020-11-13 19:44:36', '2020-11-14 19:49:12', NULL),
-(8, 'Supporter - Eric Pham', 'supporter@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'Arizona', '088456736', 'supporter.png', 'male', NULL, 3, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
-(9, 'Supporter - Eric Pham 1', 'supporter1@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'Arizona', '088456736', 'supporter.png', 'male', NULL, 3, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
+(1, 'admin - Simplo', 'admin@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'New York', '088456732', 'admin.jpg', 'male', NULL, 1, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
+(2, 'Doctor - Trịnh Trần Phương Hướng', 'doctor@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor3.png', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 19:46:18', NULL),
+(3, 'Doctor - Đặng Tiến Hòn', 'doctor5@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor4.jpg', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 20:19:55', NULL),
+(4, 'Doctor - Thắn Đường', 'doctor10@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor1.png', 'male', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 20:20:15', NULL),
+(5, 'Doctor - Phạm Thọi', 'doctor1@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor2.jpg', 'unknown', '   ', 2, 1, '2020-11-13 19:44:36', '2020-11-13 20:20:26', NULL),
+(6, 'Doctor - Bắp Môm', 'doctor2@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor3.jpg', 'female', '      ', 2, 1, '2020-11-13 19:44:36', '2020-11-14 19:49:26', NULL),
+(7, 'Doctor - Quăn Link', 'doctor3@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'LA', '088456735', 'doctor4.jpg', 'male', '      ', 2, 1, '2020-11-13 19:44:36', '2020-11-14 19:49:12', NULL),
+(8, 'Supporter - Hằn Du Lịch', 'supporter@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'Arizona', '088456736', 'supporter.png', 'female', NULL, 3, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
+(9, 'Supporter - Thùi Tiêng', 'supporter1@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'Arizona', '088456736', 'supporter.png', 'female', NULL, 3, 0, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
 (10, 'Supporter - Eric Pham 2', 'supporter2@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'Arizona', '088456736', 'supporter.png', 'male', NULL, 3, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL),
 (11, 'Supporter - Eric Pham 3', 'supporter3@gmail.com', '$2a$07$Bq0hCq3kVrvKUHfMT0NJROmQkx09aEQkGlwBGEdw799YJvWqH1kuy', 'Arizona', '088456736', 'supporter.png', 'male', NULL, 3, 1, '2020-11-13 19:44:36', '2020-11-13 19:44:36', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `clinics`
+--
+ALTER TABLE `clinics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `doctor_users`
+--
+ALTER TABLE `doctor_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `extrainfos`
+--
+ALTER TABLE `extrainfos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `places`
+--
+ALTER TABLE `places`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sequelizemeta`
+--
+ALTER TABLE `sequelizemeta`
+  ADD PRIMARY KEY (`name`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`sid`);
+
+--
+-- Indexes for table `specializations`
+--
+ALTER TABLE `specializations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `statuses`
+--
+ALTER TABLE `statuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `supporterlogs`
+--
+ALTER TABLE `supporterlogs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `clinics`
+--
+ALTER TABLE `clinics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `doctor_users`
+--
+ALTER TABLE `doctor_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `extrainfos`
+--
+ALTER TABLE `extrainfos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `patients`
+--
+ALTER TABLE `patients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `places`
+--
+ALTER TABLE `places`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `schedules`
+--
+ALTER TABLE `schedules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
+
+--
+-- AUTO_INCREMENT for table `specializations`
+--
+ALTER TABLE `specializations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `statuses`
+--
+ALTER TABLE `statuses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `supporterlogs`
+--
+ALTER TABLE `supporterlogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
