@@ -1,30 +1,35 @@
 {
     "development": {
-        "username": "root",
-        "password": "",
-        "database": "doctorcare",
-        "host": "localhost",
-        "dialect": "mysql",
-        "operatorsAliases": 0,
-        "dialectOptions": {
-            "dateStrings": true,
-            "typeCast": true,
-            "timezone": "+07:00"
-        },
+      "username": "root", 
+      "password": "",
+      "database": "doctorcare",
+      "host": "127.0.0.1",
+      "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true,
         "timezone": "+07:00"
+      },
+      "timezone": "+07:00"
     },
     "test": {
-        "dialect": "mysql",
-        "operatorsAliases": 0
+      "username": "root",
+      "password": "",
+      "database": "doctorcare_test",
+      "host": "127.0.0.1", 
+      "dialect": "mysql"
     },
     "production": {
-        "dialect": "mysql",
-        "operatorsAliases": 0,
-        "dialectOptions": {
-            "dateStrings": true,
-            "typeCast": true,
-            "timezone": "+07:00"
-        },
+      "username": "root",
+      "password": "",
+      "database": "doctorcare_production",
+      "host": "127.0.0.1",
+      "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true,
         "timezone": "+07:00"
+      },
+      "timezone": "+07:00"
     }
-}
+  }

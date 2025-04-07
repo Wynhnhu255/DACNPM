@@ -1,0 +1,25 @@
+<% extend("../app.ejs") %>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Các Gói Khám Sức Khỏe</h2>
+        <a href="/" class="btn btn-outline-primary">
+            <i class="fas fa-home"></i> 👉 Về trang chủ
+        </a>
+    </div>
+    
+    <div class="row">
+        <% packages.forEach(function(package) { %>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/images/packages/<%= package.image %>" class="card-img-top" alt="<%= package.name %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= package.name %></h5>
+                        <p class="card-text"><%= package.description %></p>
+                        <p class="card-text"><strong>Giá: </strong><%= package.price %> VNĐ</p>
+                        <a href="/detail/package/<%= package.id %>" class="btn btn-primary">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>

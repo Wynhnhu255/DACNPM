@@ -1,4 +1,8 @@
 <% extend("../app.ejs") %>
+<!-- Add these in the head section -->
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps-web.min.js"></script>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/services/services-web.min.js"></script>
+<link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css">
 <section class="detail-nav">
     <div class="container">
         <div class="container">
@@ -12,12 +16,12 @@
                     </div>
                 </div>
                 <div class="col-8 d-flex flex-row justify-content-center align-self-center menu-type">
-                    <span class="d-block"><a href="/" class="text-decoration-none">Homepage</a></span>
-                    <span class="d-block mx-5"><a href="/for-patients" class="text-decoration-none">For patients</a></span>
-                    <span class="d-block"><a href="/for-doctors" class="text-decoration-none">For doctors</a></span>
+                    <span class="d-block"><a href="/" class="text-decoration-none">Trang chủ</a></span>
+                    <span class="d-block mx-5"><a href="/for-patients" class="text-decoration-none">Dành cho bệnh nhân</a></span>
+                    <span class="d-block"><a href="/for-doctors" class="text-decoration-none">Dành cho bác sĩ</a></span>
                 </div>
                 <div class="col-2 d-flex justify-content-center align-items-center">
-                    <span><a href=" https://www.facebook.com/ho.tam.535127" target="_blank" class="text-decoration-none">Need support?</a></span>
+                    <span><a href=" https://www.facebook.com/ho.tam.535127" target="_blank" class="text-decoration-none">Cần hỗ trợ?</a></span>
                 </div>
             </div>
         </div>
@@ -33,9 +37,9 @@
                 </div>
                 <div class="col-9 info-doctor">
                     <div><span class="name-doctor"><%= doctor.name %></span></div>
-                    <div>Specialist: <span><%= specialization.name %></span></div>
+                    <div>Chuyên khoa: <span><%= specialization.name %></span></div>
                     <div class="mt-2">
-                        <a href="/feedback/<%=doctor.id%>" class="btn-feedback text-decoration-none">Send comments after going to the doctor</a>
+                        <a href="/feedback/<%=doctor.id%>" class="btn-feedback text-decoration-none">Gửi nhận xét sau khi khám</a>
                     </div>
                 </div>
 
@@ -56,13 +60,13 @@
                     <div>
                         <br>
                         <% if( doctor.Comments.length > 0){%>
-                            <div class="title-feedback">Patients response:</div>
+                            <div class="title-feedback">Phản hồi của bệnh nhân:</div>
 
                             <% doctor.Comments.forEach(function(cmt) { %>
                                 <div class="comment mt-3 d-flex flex-column">
                                     <div class="d-flex flex-row">
                                         <div><strong><%= cmt.name%></strong></div>
-                                        <div  class="ml-3 " style="color: #0056b3">(Date and time of examination) <%= cmt.dateBooking%> - <%=cmt.timeBooking%></div>
+                                        <div  class="ml-3 " style="color: #0056b3">(Ngày và giờ khám) <%= cmt.dateBooking%> - <%=cmt.timeBooking%></div>
                                     </div>
                                     <div>
                                         <span><%= cmt.content %></span>
@@ -78,7 +82,7 @@
                     <div class="d-flex flex-column h-100">
                         <div class="doctor-text-book">
                             <div class="row header-booking">
-                                <label for="day-book" class="label-booking">SCHEDULE EXAMINATION</label>
+                                <label for="day-book" class="label-booking">LỊCH KHÁM</label>
                             </div>
                             <select id="day-book" class="form-control" data-doctor="<%= doctor.id %>">
                                 <% sevenDaySchedule.forEach(function(day) { %>
@@ -88,55 +92,55 @@
                             </select>
                         </div>
                         <div id="div-schedule-id"
-                             class="doctor-schedule d-flex flex-row  flex-wrap text-decoration-none">
+                            class="doctor-schedule d-flex flex-row  flex-wrap text-decoration-none">
                             <% if(doctor.Schedules.length === 0){ %>
                                 <div>
-                                    Doctor "<%= doctor.name %>" does not have an appointment on
-                                    <b><%= sevenDaySchedule[0] %></b>. Please select the next examination schedule.
+                                    Bác sĩ "<%= doctor.name %>" không có lịch hẹn vào ngày
+                                    <b><%= sevenDaySchedule[0] %></b>. Vui lòng chọn lịch khám tiếp theo.
                                 </div>
                             <% } %>
-                                <% doctor.Schedules.forEach( function(x, index) { %>
-                                    <% if(x.getDataValue("isDisable") === false) { %>
-                                        <div id="btn-modal-<%= x.id %>" data-doctorId="<%= doctor.id %>"
-                                             data-date="<%= x.date %>"
-                                             data-time="<%= x.time %>"
-                                             class="text-decoration-none" onclick="openModalBooking(this.id)">
-                                            <div class="doctor-time">
-                                                <%= x.time %>
-                                            </div>
+                            <% doctor.Schedules.forEach( function(x, index) { %>
+                                <% if(x.getDataValue("isDisable") === false) { %>
+                                    <div id="btn-modal-<%= x.id %>" data-doctorId="<%= doctor.id %>"
+                                        data-date="<%= x.date %>"
+                                        data-time="<%= x.time %>"
+                                        class="text-decoration-none" onclick="openModalBooking(this.id)">
+                                        <div class="doctor-time">
+                                            <%= x.time %>
                                         </div>
-                                    <% } %>
+                                    </div>
+                                <% } %>
 
-                                    <% if( index === doctor.Schedules.length - 1 && x.getDataValue("isDisable") === true){%>
-                                            <div>
-                                                There are no scheduled visits in the current timeframe. Please select the next scheduled exams.
-                                            </div>
-                                        <%}%>
-                                <% }) %>
+                                <% if( index === doctor.Schedules.length - 1 && x.getDataValue("isDisable") === true){%>
+                                    <div>
+                                        Không có lịch khám nào trong khung giờ hiện tại. Vui lòng chọn lịch khám tiếp theo.
+                                    </div>
+                                <%}%>
+                            <% }) %>
 
                         </div>
                         <div id="div-more-info">
                             <% if(doctor.Schedules.length > 0){ %>
                                 <div class="d-flex flex-column">
                                     <div>
-                                                <span class="d-block mt-2"> Choose <i class="fa fa-hand-o-up" aria-hidden="true"></i>  and book a free consultation</span>
+                                        <span class="d-block mt-2"> Chọn <i class="fa fa-hand-o-up" aria-hidden="true"></i>  và đặt lịch tư vấn miễn phí</span>
                                     </div>
                                     <div style="border-top: 1px solid #ccc"
-                                         class="d-flex flex-column">
-                                                            <span class="d-block pt-3 pb-1"
-                                                                  style="text-transform: uppercase">Medical address:</span>
+                                        class="d-flex flex-column">
+                                        <span class="d-block pt-3 pb-1"
+                                            style="text-transform: uppercase">Địa chỉ y tế:</span>
                                         <span class="d-block pb-1"
-                                              style="border-bottom: 1px solid #ccc"><%= doctor.address %></span>
+                                            style="border-bottom: 1px solid #ccc"><%= doctor.address %></span>
                                     </div>
-                                    <span class="d-block pt-2">Price: 50 USD</span>
+                                    <span class="d-block pt-2">Giá: 50 USD</span>
                                 </div>
                             <% } %>
                         </div>
                     </div>
                     <div class="clinic-address">
-                        Medical address:
+                        Địa chỉ y tế:
                     </div>
-                    <div id="myMap" class="bing-map">
+                    <div id="myMap" style="width: 100%; height: 400px;"></div>
                     </div>
                 </div>
             </div>
@@ -147,11 +151,11 @@
 <input hidden type="text" id="doctorAddress" value="<%= clinic.address %>">
 
 <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-     id="modalBooking">
+    id="modalBooking">
     <div class="modal-dialog mw-100 w-75" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Make a medical appointment</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Đặt lịch khám bệnh</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -159,8 +163,8 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-5" style="border-right: 1px solid #ccc;" id="infoDoctor"
-                         data-doctor-id="<%= doctor.id %>">
-                        <label class="text-label" style="padding-top: 7px">Doctor information:</label>
+                        data-doctor-id="<%= doctor.id %>">
+                        <label class="text-label" style="padding-top: 7px">Thông tin bác sĩ:</label>
                         <div class="d-flex flex-row">
                             <img class="avatar-doctor-modal" src="/images/users/<%= doctor.avatar %>">
                             <div class="ml-3">
@@ -173,88 +177,86 @@
                         <div class="mt-4">
                             <%= clinic.address %>
                         </div>
-                        <div class="mt-3">Free appointment appointment</div>
-                        <div class="mt-3">Price: 50 USD</div>
+                        <div class="mt-3">Đặt lịch tư vấn miễn phí</div>
+                        <div class="mt-3">Giá: 50 USD</div>
 
                     </div>
                     <div class="col-7">
                         <form id="form-patient-info">
                             <div class="form-group">
-                                <label for="patient-name" class="col-form-label text-label">Patient information:</label>
+                                <label for="patient-name" class="col-form-label text-label">Thông tin bệnh nhân:</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                       placeholder="Full name">
+                                    placeholder="Họ và tên đầy đủ">
                                 <div class="invalid-feedback">
-                                    Patient names cannot be left blank
+                                    Tên bệnh nhân không được để trống
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender"
-                                           id="selectMale" value="male" checked>
-                                    <label class="form-check-label" for="selectMale">Male</label>
+                                        id="selectMale" value="male" checked>
+                                    <label class="form-check-label" for="selectMale">Nam</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender"
-                                           id="selectFemale" value="female">
-                                    <label class="form-check-label" for="selectFemale">Female</label>
+                                        id="selectFemale" value="female">
+                                    <label class="form-check-label" for="selectFemale">Nữ</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="phone" name="phone"
-                                       placeholder="Phone number (*)">
-                                <div class="invalid-feedback"> Invalid phone number</div>
+                                    placeholder="Số điện thoại (*)">
+                                <div class="invalid-feedback"> Số điện thoại không hợp lệ</div>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Email (*)">
-                                <div class="invalid-feedback">
-                                    Invalid email
-                                </div>
+                                <div class="invalid-feedback"> Email không hợp lệ</div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="year" name="year" placeholder="Year">
+                                <input type="text" class="form-control" id="year" name="year" placeholder="Năm sinh">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="address" name="address"
-                                       placeholder="Address">
+                                    placeholder="Địa chỉ">
                             </div>
                             <div class="form-group">
-                                <label for="description" class="col-form-label">Reason for examination:</label>
+                                <label for="description" class="col-form-label">Lý do khám:</label>
                                 <textarea class="form-control" id="description" name="description"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="extraInfo" class="col-form-label">Additional information (optional)
-                                    <span id="viewExtraInfo" class="view viewExtraInfo">(View): </span> </label>
+                                <label for="extraInfo" class="col-form-label">Thông tin bổ sung (tùy chọn)
+                                    <span id="viewExtraInfo" class="view viewExtraInfo">(Xem): </span> </label>
                                 <div class="extraInfo d-none" id="divExtraInfo">
-                                     <textarea class="form-control" id="breath"
-                                               placeholder="Respiratory history note (if applicable)"
-                                               name="breath"></textarea>
+                                    <textarea class="form-control" id="breath"
+                                        placeholder="Ghi chú tiền sử hô hấp (nếu có)"
+                                        name="breath"></textarea>
                                     <div class="form-group">
-                                        <label class="mt-2 col-form-label w-100">Have ever visited at (since the last 15 days):</label>
+                                        <label class="mt-2 col-form-label w-100">Đã từng đến khám tại (trong 15 ngày gần nhất):</label>
 
                                         <% places.forEach(function(place) { %>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="places"
-                                                   id="selectPlace<%= place.id %>" value="<%= place.id %>">
-                                            <label class="form-check-label"
-                                                   for="selectPlace<%= place.id %>"><%= place.name %></label>
-                                        </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="places"
+                                                    id="selectPlace<%= place.id %>" value="<%= place.id %>">
+                                                <label class="form-check-label"
+                                                    for="selectPlace<%= place.id %>"><%= place.name %></label>
+                                            </div>
                                         <% }) %>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="places"
-                                                   id="selectNone" value="none" checked>
-                                            <label class="form-check-label" for="selectNone">Never visited</label>
+                                                id="selectNone" value="none" checked>
+                                            <label class="form-check-label" for="selectNone">Chưa từng đến</label>
                                         </div>
 
                                         <div class="mt-3">
-                                            <label>There are prior examinations:</label>
+                                            <label>Có kết quả khám trước đó:</label>
                                             <div class="d-flex ">
-                                                <label class="mr-2" for="oldForms">Upload images: </label>
+                                                <label class="mr-2" for="oldForms">Tải ảnh lên: </label>
                                                 <input name="oldForms" id="oldForms" type="file" accept="image/*"
-                                                       multiple>
+                                                    multiple>
                                             </div>
                                             <textarea class="form-control mt-2" id="extraOldForms"
-                                                      placeholder="Additional information, if any (doctor, place of examination, etc.)"
-                                                      name="extraOldForms"></textarea>
+                                                placeholder="Thông tin bổ sung, nếu có (bác sĩ, nơi khám, v.v.)"
+                                                name="extraOldForms"></textarea>
                                         </div>
                                     </div>
 
@@ -265,56 +267,83 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div id="processLoading" class="process-loading d-none"> <span class="d-block mx-2"> <strong>Processing</strong></span><div class="loader"></div> </div>
-                <button type="button" class="ml-3 btn btn-secondary" data-dismiss="modal">Cancle</button>
-                <button type="button" class="btn btn-primary" id="btn-confirm-booking">Confirm medical appointment</button>
+                <div id="processLoading" class="process-loading d-none"> <span class="d-block mx-2"> <strong>Đang xử lý</strong></span><div class="loader"></div> </div>
+                <button type="button" class="ml-3 btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" id="btn-confirm-booking">Xác nhận đặt lịch khám</button>
             </div>
         </div>
     </div>
 </div>
 <script>
-    var map, searchManager;
-    function GetMap() {
-        map = new Microsoft.Maps.Map('#myMap', {
-            credentials: 'AgOTudEefMLV68arfE7ea5Yx_ZNEQUrF-prgC0JeOJJk8EbOGZUHkpMaIYFDNld4',
-        });
+    let map;
+    // Wait for TomTom SDK to load
+    document.addEventListener('DOMContentLoaded', function() {
+        if (tt) {
+            GetMap();
+        } else {
+            console.error('TomTom SDK not loaded');
+        }
+    });
 
-        //Make a request to geocode New York, NY.
-        geocodeQuery($('#doctorAddress').val());
+    function GetMap() {
+        try {
+            console.log('Initializing map...');
+            map = tt.map({
+                key: '0dXQnmpss25dVjoR0u25MucSA9Xsd6pS',
+                container: 'myMap',
+                center: [106.660172, 10.762622], // Default center
+                zoom: 12
+            });
+
+            let address = document.getElementById('doctorAddress').value.trim();
+            if (address) {
+                console.log('Doctor Address:', address);
+                geocodeQuery(address);
+            }
+        } catch (error) {
+            console.error('Error initializing map:', error);
+        }
     }
 
     function geocodeQuery(query) {
-        //If search manager is not defined, load the search module.
-        if (!searchManager) {
-            //Create an instance of the search manager and call the geocodeQuery function again.
-            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function() {
-                searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                geocodeQuery(query);
-            });
-        } else {
-            var searchRequest = {
-                where: query,
-                callback: function(r) {
-                    //Add the first result to the map and zoom into it.
-                    if (r && r.results && r.results.length > 0) {
-                        var pin = new Microsoft.Maps.Pushpin(r.results[0].location, {
-                            title: $('#doctorAddress').val(),
-                            color: 'red'
-                        });
-
-                        map.entities.push(pin);
-                        map.setView({ bounds: r.results[0].bestView });
-                    }
-                },
-                errorCallback: function(e) {
-                    //If there is an error, alert the user about it.
-                    alert("No results found.");
-                }
-            };
-
-            //Make the geocode request.
-            searchManager.geocode(searchRequest);
+        if (!tt || !tt.services) {
+            console.error('TomTom services not available');
+            return;
         }
+
+        console.log('Querying address:', query);
+        tt.services.fuzzySearch({
+            key: '0dXQnmpss25dVjoR0u25MucSA9Xsd6pS',
+            query: query
+        })
+        .then(function(response) {
+            console.log('API Response:', response);
+            if (response.results && response.results.length > 0) {
+                const result = response.results[0];
+                console.log('Coordinates:', result.position.lng, result.position.lat);
+                
+                // Clear existing markers
+                if (map.getLayer('markers')) {
+                    map.removeLayer('markers');
+                }
+
+                new tt.Marker()
+                    .setLngLat([result.position.lng, result.position.lat])
+                    .addTo(map);
+
+                map.setCenter([result.position.lng, result.position.lat]);
+                map.setZoom(14);
+            } else {
+                console.log("No results found, using default location");
+                map.setCenter([106.660172, 10.762622]);
+                map.setZoom(12);
+            }
+        })
+        .catch(function(error) {
+            console.error('Geocoding error:', error);
+            map.setCenter([106.660172, 10.762622]);
+            map.setZoom(12);
+        });
     }
 
     function openModalBooking(id) {

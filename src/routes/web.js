@@ -9,6 +9,8 @@ import bot from "./../controllers/botFBController";
 import passport from "passport";
 import passportLocal from 'passport-local';
 import userService from "./../services/userService";
+const packageController = require('../controllers/packageController');
+import userController from '../controllers/userController';
 
 const multer = require('multer');
 const upload = multer();
@@ -59,10 +61,19 @@ passport.deserializeUser((id, done) => {
     });
 });
 
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.status(401).json({ message: 'Vui lòng đăng nhập để thực hiện chức năng này' });
+};
+
 let initRoutes = (app) => {
     router.get("/all-clinics", home.getPageAllClinics);
     router.get("/all-doctors", home.getPageAllDoctors);
     router.get("/all-specializations", home.getPageAllSpecializations);
+    router.get('/all-packages', packageController.getAllPackages);
 
     router.get('/webhook', bot.getWebhookFB);
     router.post('/webhook', bot.postWebhookFB);
@@ -184,6 +195,10 @@ let initRoutes = (app) => {
     router.get("/logout", auth.checkLoggedIn, auth.getLogout);
 
     router.post("/admin/statistical", auth.checkLoggedIn, admin.getInfoStatistical);
+
+    router.get('/detail/package/:id', packageController.getPackageDetailById);
+
+    router.post('/user/change-password', isAuthenticated, userController.changePassword);
 
     return app.use("/", router);
 };

@@ -1,59 +1,59 @@
 export const transValidation = {
-    email_incorrect: "Invalid email",
-    gender_incorrect: "Invalid gender",
-    password_incorrect: "Password must have at least 6 characters",
-    password_confirmation_incorrect: "The confirm password is not correct",
+    email_incorrect: "Email không khả dụng",
+    gender_incorrect: "Giới tính không khả dụng",
+    password_incorrect: "Mật khẩu không đúng",
+    password_confirmation_incorrect: "Mật khẩu không khớp",
 };
 
 export const transMailBookingNew = {
-    subject: "Email notification of booking progress at Doctors Care",
+    subject: "Thông báo email",
     template: (data) => {
-        return `<h3>Thank you for booking an appointment at Doctors Care's system </h3>
-        <h4>Information for booked appointment:</h4>
-        <div>Doctor's name: ${data.doctor} </div>
-        <div>Time: ${data.time}</div>
-        <div>Date: ${data.date}</div>
-        <div>Status: <b> Pending - A new appointment is waiting for confirmation</b></div>
-        <h4>Doctors Care system will automatically send email notification when confirmed appointment is complete. Thank you !</h4>`;
+        return `<h3> Cảm ơn vì đã đặt lích khám chữa bệnh ở Doctor Care! </h3>
+        <h4>Thông tin lịch hẹn: </h4>
+        <div>Bác sĩ: ${data.doctor} </div>
+        <div>Vào lúc: ${data.time}</div>
+        <div>Ngày: ${data.date}</div>
+        <div>Trạng thái: <b> Lịch khám của bạn đang chờ được xác nhận</b></div>
+        <h4>Doctors Care sẽ gửi email cho bạn ngay khi lịch khám của bạn được xác nhận!</h4>`;
     },
 };
 
 export const transMailBookingFailed = {
-    subject: "Email notification of booking progress at Doctors Care",
+    subject: "Thông báo email",
     template: (data) => {
-        return `<h3>Thank you for booking an appointment at Doctors Care's system  </h3>
-        <h4>Information for booked appointment:</h4>
-        <div>Doctor's name: ${data.doctor} </div>
-        <div>Time: ${data.time}</div>
-        <div>Date: ${data.date}</div>
-        <div>Status: <b>Cancel - ${data.reason}</b></div>
-        <h4>If you notice errors from this email, please contact the support operator: <b> 911 911 </b>. Thank you !</h4>`;
+        return `<h3>Cảm ơn vì đã đặt lích khám chữa bệnh ở Doctor Care!  </h3>
+        <h4>Thông tin lịch hẹn:</h4>
+        <div>Bác sĩ: ${data.doctor} </div>
+        <div>Vào lúc: ${data.time}</div>
+        <div>Ngày: ${data.date}</div>
+        <div>Trạng thái: <b>Hủy - ${data.reason}</b></div>
+        <h4>Vui lòng liên hệ với bộ phận hỗ trợ nếu bạn gặp vấn đề khi đặt lịch khám <b> 113 113 </b></h4>`;
     },
 };
 
 export const transMailBookingSuccess = {
-    subject: "Email notification of booking progress at Doctors Care",
+    subject: "Thông báo email",
     template: (data) => {
-        return `<h3>Thank you for booking an appointment at Doctors Care's system </h3>
-        <h4>Information for booked appointment:</h4>
-        <div>Doctor's name: ${data.doctor} </div>
-        <div>Time: ${data.time}</div>
-        <div>Date: ${data.date}</div>
-        <div>Status: <b>Succeed</b></div>
-        <h4>Thank you very much !</h4>`;
+        return `<h3>Cảm ơn vì đã đặt lích khám chữa bệnh ở Doctor Care! </h3>
+        <h4>Thông tin lịch hẹn:</h4>
+        <div>Bác sĩ: ${data.doctor} </div>
+        <div>Vào lúc: ${data.time}</div>
+        <div>Ngày: ${data.date}</div>
+        <div>Status: <b>Đặt lịch thành công!</b></div>
+        <h4>Cam on vi da den</h4>`;
     },
 };
 
-export const transMailRemedy= {
-    subject: "Email sending the medical invoice from the doctor",
+export const transMailRemedy = {
+    subject: "Thông báo email",
     template: (data) => {
-        return `<h3>Thank you for your trust in booking a medical examination in DoctorCare's system.</h3>
-        After you have seen the doctor's office <b> ${data.doctor} </b>, you can review the billing details from this email attachment. </h4>
-        <div>The password for extracting attachments has the following form: <i>Full name without accent - 3 digits first phone number - last 2 digits of your birth year</div>
-        <br>
-        <div>For example: Full name: Hary Pham, with the registered phone number: 0123456789 and born: 1910, the extracted password is: <b> harypham-012-10 </b> </div>
-        <br>
-        <div>In the event of neither receiving attachments nor decompressing, please contact the support operator<b>911 911</b></div>
-        <h4>Thank you !</h4>`;
+      return `<h3>Cảm ơn vì đã đặt lịch khám chữa bệnh tại Doctor Care!</h3>
+              Sau khi bạn đã khám tại phòng khám của bác sĩ <b>${data.doctor}</b>, bạn có thể xem chi tiết hóa đơn từ file đính kèm email này. </h4>
+              <div>Mật khẩu để giải nén file đính kèm có dạng như sau: <i>Họ và tên đầy đủ không dấu - 3 chữ số đầu tiên của số điện thoại - 2 chữ số cuối của năm sinh của bạn.</i></div>
+              <br>
+              <div>Ví dụ: Họ và tên: Hary Pham, với số điện thoại đã đăng ký: 0123456789 và năm sinh: 1910, mật khẩu giải nén là: <b>harypham-012-10</b></div>
+              <br>
+              <div>Trong trường hợp không nhận được file đính kèm hoặc không giải nén được, vui lòng liên hệ với tổng đài hỗ trợ <b>911 911</b></div>
+              <h4>Xin cảm ơn!</h4>`;
     },
-};
+  };

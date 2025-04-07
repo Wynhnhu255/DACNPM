@@ -1,0 +1,142 @@
+<% extend("../../app.ejs") %>
+
+<style>
+.package-container {
+    display: flex;
+    min-height: 80vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/images/background/for-doctors.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.package-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7); /* Giảm độ trong suốt từ 0.9 xuống 0.7 */
+    z-index: 1;
+}
+
+.package-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    border: none;
+}
+
+.package-image {
+    width: 60%;
+    max-width: 400px;
+    height: auto;
+    margin: 2rem auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.contact-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.facebook-link {
+    display: inline-block;
+    margin: 2rem auto;
+    padding: 12px 24px;
+    background: #1877f2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.facebook-link:hover {
+    background: #1564ce;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.3);
+}
+
+.facebook-link i {
+    margin-right: 8px;
+}
+
+.back-home-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #0056b3;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: #f8f9fa;
+}
+
+.navbar-brand {
+    display: none; 
+}
+</style>
+
+<a href="/" class="btn back-home-btn">
+    <i class="fas fa-home"></i> Về trang chủ
+</a>
+
+<div class="package-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="package-card card">
+                    <% if (package.image) { %>
+                        <img src="/images/packages/<%= package.image %>" 
+                             class="package-image"
+                             alt="<%= package.name %>">
+                    <% } %>
+                    
+                    <div class="card-body text-center">
+                        <h2 class="card-title mb-4"><%= package.name %></h2>
+                        <p class="card-text mb-4"><%= package.description %></p>
+                        <p class="card-text mb-4">
+                            <strong>Giá: </strong>
+                            <%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(package.price) %>
+                        </p>
+                        
+                        <div class="text-center">
+                            <a href="https://www.facebook.com/tran.thi.anh.nguyet.226577" 
+                               target="_blank" 
+                               class="facebook-link">
+                                <i class="fab fa-facebook-f"></i>
+                                Liên hệ tư vấn qua Facebook
+                            </a>
+                            <p class="mt-3 text-muted">
+                                Nhắn tin để được tư vấn chi tiết về gói khám
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>HaryPhamDev - Doctors Care</title>
+    <title>Doctors Care</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,7 +21,7 @@
             <div class="col-6 lg-image-background">
             </div>
             <div class="col-6 login-form">
-                <span class="text-login">Log in to HaryPhamDev - Doctors Care</span>
+                <span class="text-login">Đăng nhập</span>
                 <% if(error != ""){ %>
                     <div class="alert alert-danger">
                         <%= error %>
@@ -29,25 +29,22 @@
                 <% } %>
                 <form method="POST" action="/login">
                     <div class="form-group">
-                        <label for="email">Your email address:</label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <label for="password">Your password:</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password"
                                placeholder="Password">
                     </div>
                     <div class="forgot-password">
-                        <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgotten password???</a>
+                        <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Quên mật khẩu?</a>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-login">LOG IN</button>
+                    <button type="submit" class="btn btn-primary btn-login">Đăng nhập</button>
                 </form>
                 <br>
                 <hr>
-                <a class="lg-register" href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to the hompage</a> <br/>
-                <a title="Click to view my Youtube channel"class="lg-register" target="_blank" href="https://www.facebook.com/nhunhunhunhuhihi"> <i style="color: red "class="fa fa-heart" aria-hidden="true"></i>Buy her a coffee 🖤</a><br/>
-                <a title="Click to view my Facebook Page"class="lg-register" target="_blank" href="https://www.facebook.com/tran.thi.anh.nguyet.226577"><i style="color: orange" class="fa fa-comments" aria-hidden="true"></i> Contact her via Facebook Page</a>
-
+                <a class="lg-register" href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Về trang chủ</a> <br/>
             </div>
         </div>
     </div>
@@ -59,19 +56,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Forgotten password??? Please enter your email address to search for your account.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Vui lòng nhập email để xác định tài khoản</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div>
-                    <label for="input-forgot-password">Email address:</label>
+                    <label for="input-forgot-password">Email:</label>
                     <input id="input-forgot-password" type="email" class="form-control" placeholder="Email...">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
