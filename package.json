@@ -10,6 +10,9 @@
   "author": "Doctor Care",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.x.x",
+    "@babel/preset-env": "^7.x.x",
+    "@babel/register": "^7.x.x",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "body-parser": "^1.20.3",
@@ -44,11 +47,7 @@
     "socket.io": "^4.8.1",
     "striptags": "^3.1.1",
     "telegraf": "^4.16.3",
-    "uuid": "^3.3.3",
-    "@babel/core": "^7.x.x",
-    "@babel/preset-env": "^7.x.x",
-    "@babel/register": "^7.x.x",
-    "@babel/node": "^7.x.x"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
