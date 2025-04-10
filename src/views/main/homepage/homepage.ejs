@@ -5,14 +5,14 @@
                 <div class="col-2">
                     <div class="homepage-logo mt-2">
                         <img class="menu-nav" src="../images/background/menu-nav.png" alt="img logo">
-                        <span>Doctors care</span>
+                        <span><b>Doctors care</b></span>
                     </div>
                     <div class="home-nav">
                         <div class="nav-item">
                             <% if(user){%>
                                 <a href="/users" target="_blank"><b>Dashboard</b></a>
                                 <%} else {%>
-                                    <a href="/login"><b>Đăng nhập</b></a>
+                                    <a href="/login" style="color:#2a96a5"><b>Đăng nhập</b></a>
                                     <% }%>
                         </div>
                     </div>
@@ -44,8 +44,9 @@
                     </div>
                 </div>
                 <div class="col-2 d-flex justify-content-center align-items-center">
-                    <span title="Có câu hỏi?"><a href="https://www.facebook.com/profile.php?id=61575172705823" target="_blank"
-                            class="text-decoration-none" style="color:#2a96a5 "><b>Cần hỗ trợ?</b></a></span>
+                    <span title="Có câu hỏi?"><a href="https://www.facebook.com/profile.php?id=61575172705823"
+                            target="_blank" class="text-decoration-none" style="color:#2a96a5 "><b>Cần hỗ
+                                trợ?</b></a></span>
                 </div>
             </div>
         </div>
@@ -83,6 +84,8 @@
             </div>
         </div>
     </section>
+
+    <!--CHUYEN KHOA PHO BIEN-->
     <section class="sec-fields-hospital d-flex flex-column">
         <div class="sec-fields-title mx-auto d-flex my-3">
             <h2 class="">Chuyên khoa phổ biến</h2>
@@ -164,7 +167,7 @@
                     <a href="/detail/post/<%= post.id %>" class="text-decoration-none" style="outline: none">
                         <div class="d-flex flex-row slide-post">
                             <div class="img-post">
-                                <img src="https://cdn.bookingcare.vn/fr/w500/2018/06/18/113541benh-vien-bao-son.jpg"
+                                <img src="https://thietbikythuat.com.vn/wp-content/uploads/2021/01/linh-vuc-y-te-768x534.jpg"
                                     alt="image bla bla">
                             </div>
                             <div class="content-post">
@@ -183,13 +186,14 @@
     </section>
     <section class="sec-for-doctors">
         <div class="d-flex flex-row mx-auto main-for-doctors">
-            <div class="d-flex flex-column col-5">
+            <div class="d-flex flex-column col-5" style="text-align: center;">
                 <h1 class="mt-4">Dành cho bác sĩ</h1>
                 <span class="mt-3 mb-1">Xây dựng uy tín và thương hiệu trực tuyến</span>
                 <span>Tăng số lượng bệnh nhân và quản lý hiệu quả</span>
-                <a href="/contact" class="mt-5 pd-3 contact-admin text-decoration-none">LIÊN HỆ HỢP TÁC</a>
+                <a href="/contact" class="mt-5 pd-3 contact-admin text-decoration-none" style="margin-left: 170px;">LIÊN
+                    HỆ HỢP TÁC</a>
             </div>
-            <div class="col-7 d-flex flex-column align-items-center" style="padding-top: 5px">
+            <div class="col-8 d-flex flex-column align-items-center" style="padding-top: 5px">
                 <h1 class="mt-4">Dành cho khách hàng</h1>
                 <span class="mt-3 mb-1">Hỗ trợ nếu bạn gặp bất kỳ vấn đề gì (trong trường hợp khẩn cấp)</span>
                 <span>Learn how to use easily and quickly</span>
