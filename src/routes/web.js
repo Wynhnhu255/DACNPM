@@ -69,6 +69,7 @@ const isAuthenticated = (req, res, next) => {
     res.status(401).json({ message: 'Vui lòng đăng nhập để thực hiện chức năng này' });
 };
 
+
 let initRoutes = (app) => {
     router.get("/all-clinics", home.getPageAllClinics);
     router.get("/all-doctors", home.getPageAllDoctors);
@@ -199,6 +200,7 @@ let initRoutes = (app) => {
     router.get('/detail/package/:id', packageController.getPackageDetailById);
 
     router.post('/user/change-password', isAuthenticated, userController.changePassword);
+    router.post('/user/update-info', isAuthenticated, userController.updateUserInfo);
 
     return app.use("/", router);
 };

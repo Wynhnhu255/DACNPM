@@ -7,6 +7,7 @@ import doctorService from "./../services/doctorService";
 import chatFBServie from "./../services/chatFBService";
 import multer from "multer";
 
+
 let getManageDoctor = async (req, res) => {
     let doctors = await userService.getInfoDoctors();
     return res.render("main/users/admins/manageDoctor.ejs", {
@@ -247,6 +248,8 @@ let putUpdateDoctor = (req, res) => {
         }
 
         try {
+            console.log('req.file:', req.file);
+            
             let item = {
                 id: req.body.id,
                 name: req.body.nameDoctor,
@@ -282,7 +285,18 @@ let storageImageDoctor = multer.diskStorage({
 
 let imageDoctorUploadFile = multer({
     storage: storageImageDoctor,
-    limits: { fileSize: 1048576 * 20 }
+    limits: { fileSize: 1048576 * 20 },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png/;
+        const extName = fileTypes.test(file.originalname.toLowerCase());
+        const mimeType = fileTypes.test(file.mimetype);
+
+        if (extName && mimeType) {
+            return cb(null, true);
+        } else {
+            cb(new Error('Chỉ cho phép các file ảnh (jpeg, jpg, png)'));
+        }
+    }
 }).single("avatar");
 
 let getSupporterPage = async (req, res) => {
@@ -309,14 +323,14 @@ let deleteSpecializationById = async (req, res) => {
 
 let getManageBotPage = async (req, res) => {
     try {
-        return res.send("Hello word. You'll need a witAI account. More info: please comment on my youtube channel.")
-        // let entities = await chatFBServie.getWitEntitiesWithExpression();
-        // let entityName = await chatFBServie.getWitEntities();
-        // return res.render('main/users/admins/manageBot.ejs', {
-        //     user: req.user,
-        //     entities: entities,
-        //     entityName: entityName
-        // });
+        return res.send("Hello word. You'll need a witAI account")
+        let entities = await chatFBServie.getWitEntitiesWithExpression();
+        let entityName = await chatFBServie.getWitEntities();
+        return res.render('main/users/admins/manageBot.ejs', {
+            user: req.user,
+            entities: entities,
+            entityName: entityName
+        });
     } catch (e) {
         console.log(e);
     }

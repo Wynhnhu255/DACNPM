@@ -4,7 +4,7 @@ import request from "request";
 require('dotenv').config();
 
 let getWebhookFB = (req, res) => {
-    let VERIFY_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+    let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
     let challenge = req.query['hub.challenge'];

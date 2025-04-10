@@ -1,0 +1,37 @@
+   .contact-icons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+  }
+
+  .contact-icons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffffcc; /* nền trắng mờ */
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .contact-icons a:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
+  .contact-icons a:active {
+    transform: scale(0.95);
+  }
+
+  .contact-icons img {
+    width: 30px;
+    height: 30px;
+  }
+

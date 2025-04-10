@@ -1,5 +1,5 @@
 require("dotenv").config();
-import homeService from "./../services/homeService";
+const homeService = require('../services/homeService');
 import specializationService from "./../services/specializationService";
 import doctorService from "./../services/doctorService";
 import userService from "./../services/userService";
@@ -35,7 +35,7 @@ let getHomePage = async (req, res) => {
             pageId: process.env.PAGE_ID
         });
     } catch (e) {
-        console.log(e);
+        console.error('Error:', e);
         return res.render('main/homepage/pageNotFound.ejs');
     }
 };
