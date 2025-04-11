@@ -50,6 +50,7 @@ let postCreatePost = (item) => {
 };
 
 let getDetailPostPage = (id) => {
+    console.log('⚠️ ĐANG GỌI getDetailPostPage');
     return new Promise((async (resolve, reject) => {
         try {
             let post = await db.Post.findOne({
@@ -65,6 +66,25 @@ let getDetailPostPage = (id) => {
         }
     }));
 };
+
+let getDetailHandbook = (id) => {
+    console.log('✅ ĐANG GỌI getDetailHandbook');
+    return new Promise(async (resolve, reject) => {
+        try {
+            let handbook = await db.Handbook.findOne({
+                where: { id: id },
+                attributes: ['id', 'title', 'contentHTML', 'contentMarkdown', 'forDoctorId', 'forSpecializationId', 'forClinicId']
+            });
+            if (!handbook) {
+                reject(`Can't get handbook with id=${id}`);
+            }
+            resolve(handbook);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 
 let getAllSupporters = () => {
     return new Promise(async (resolve, reject) => {
@@ -130,6 +150,51 @@ let getPostsPagination = (page, limit, role) => {
         }
     });
 };
+
+// Hanbook
+let getHandbookPagination = (page, limit, role) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let handbooks;
+
+            // Chỉ lấy bài handbook — có thể lọc theo role nếu cần
+            if (role === "admin") {
+                handbooks = await db.Handbook.findAndCountAll({
+                    offset: (page - 1) * limit,
+                    limit: limit,
+                    attributes: ['id', 'title', 'contentMarkdown', 'contentHTML', 'createdAt', 'writerId'],
+                    order: [['createdAt', 'DESC']],
+                });
+            } else {
+                handbooks = await db.Handbook.findAndCountAll({
+                    // Bạn có thể mở filter nếu muốn giới hạn loại bài
+                    offset: (page - 1) * limit,
+                    limit: limit,
+                    attributes: ['id', 'title', 'contentMarkdown', 'contentHTML', 'createdAt', 'writerId'],
+                    order: [['createdAt', 'DESC']],
+                });
+            }
+
+            let total = Math.ceil(handbooks.count / limit);
+
+            await Promise.all(handbooks.rows.map(async (item) => {
+                let supporter = await helper.getSupporterById(item.writerId);
+                let dateClient = helper.convertDateClient(item.createdAt);
+                item.setDataValue('writerName', supporter.name);
+                item.setDataValue('dateClient', dateClient);
+                return item;
+            }));
+
+            resolve({
+                handbooks: handbooks,
+                total: total
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 
 let deletePostById = (id) => {
     return new Promise(async (resolve, reject) => {
@@ -205,5 +270,7 @@ module.exports = {
     getPostsPagination: getPostsPagination,
     deletePostById: deletePostById,
     putUpdatePost: putUpdatePost,
-    doneComment: doneComment
+    doneComment: doneComment,
+    getDetailHandbook: getDetailHandbook, //
+    getHandbookPagination: getHandbookPagination //
 };

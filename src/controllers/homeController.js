@@ -26,6 +26,7 @@ let getHomePage = async (req, res) => {
         let clinics = await homeService.getClinics();
         let doctors = await userService.getInfoDoctors();
         let posts = await homeService.getPosts(LIMIT_POST);
+
         return res.render("main/homepage/homepage.ejs", {
             user: req.user,
             specializations: specializations,
@@ -41,7 +42,7 @@ let getHomePage = async (req, res) => {
 };
 
 let getUserPage = (req, res) => {
-    let currentMonth = new Date().getMonth() +1 ;
+    let currentMonth = new Date().getMonth() + 1;
     res.render("main/users/home.ejs", {
         user: req.user,
         currentMonth: currentMonth
@@ -122,6 +123,21 @@ let getDetailPostPage = async (req, res) => {
     }
 };
 
+//
+let getDetailHandbook = async (req, res) => {
+    try {
+        let handbook = await supporterService.getDetailHandbook(req.params.id);
+        res.render('main/homepage/handbook.ejs', {
+            handbook: handbook
+        });
+
+    } catch (e) {
+        console.log(e);
+        return res.render('main/homepage/pageNotFound.ejs');
+    }
+};
+
+
 let getDetailClinicPage = async (req, res) => {
     try {
         let currentDate = moment().format('DD/MM/YYYY');
@@ -157,6 +173,32 @@ let getPostsWithPagination = async (req, res) => {
         striptags: striptags
     })
 };
+//
+let getHandbookPaginationAPI = async (req, res) => {
+    try {
+        let role = 'nope';
+        let page = +req.query.page || 1;
+        let object = await supporterService.getHandbookPagination(page, +process.env.LIMIT_GET_POST, role);
+        return res.json({
+            handbooks: object.handbooks,
+            total: object.total
+        });
+    } catch (e) {
+        console.log("🔥 Lỗi getHandbookPaginationAPI:", e);
+        return res.status(500).json({ error: "Server error" });
+    }
+};
+
+let getHandbookWithPagination = async (req, res) => {
+    let role = 'nope';
+    let page = +req.query.page || 1;
+    let object = await supporterService.getHandbookPagination(page, +process.env.LIMIT_GET_POST, role);
+    return res.render("main/homepage/allHandbookPagination.ejs", {
+        handbooks: object.handbooks.rows,
+        total: object.total,
+        striptags: striptags
+    })
+}
 
 let getPostSearch = async (req, res) => {
     let search = req.query.keyword;
@@ -315,35 +357,35 @@ let postSearchHomePage = async (req, res) => {
 };
 
 let getPageAllClinics = async (req, res) => {
-    try{
+    try {
         let clinics = await homeService.getDataPageAllClinics();
 
-        return res.render("main/homepage/allClinics.ejs",{
+        return res.render("main/homepage/allClinics.ejs", {
             clinics: clinics
         })
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
 };
 
-let getPageAllDoctors = async (req, res)=>{
-    try{
+let getPageAllDoctors = async (req, res) => {
+    try {
         let doctors = await homeService.getDataPageAllDoctors();
-        return res.render("main/homepage/allDoctors.ejs",{
+        return res.render("main/homepage/allDoctors.ejs", {
             doctors: doctors
         })
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
 };
 
-let getPageAllSpecializations =async (req, res)=>{
-    try{
+let getPageAllSpecializations = async (req, res) => {
+    try {
         let specializations = await homeService.getDataPageAllSpecializations();
-        return res.render("main/homepage/allSpecializations.ejs",{
+        return res.render("main/homepage/allSpecializations.ejs", {
             specializations: specializations
         })
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
 };
@@ -371,5 +413,8 @@ module.exports = {
     postSearchHomePage: postSearchHomePage,
     getPageAllClinics: getPageAllClinics,
     getPageAllDoctors: getPageAllDoctors,
-    getPageAllSpecializations: getPageAllSpecializations
+    getPageAllSpecializations: getPageAllSpecializations,
+    getDetailHandbook: getDetailHandbook, //
+    getHandbookWithPagination: getHandbookWithPagination, //
+    getHandbookPaginationAPI: getHandbookPaginationAPI,//
 };

@@ -43,9 +43,9 @@ let getPosts = (LIMIT_POST) => {
                 order: [['createdAt', 'DESC']],
                 limit: LIMIT_POST,
                 attributes: [
-                    'id', 
-                    'title', 
-                    'contentHTML', 
+                    'id',
+                    'title',
+                    'contentHTML',
                     'contentMarkdown',
                     'writerId',
                     'image'
@@ -67,6 +67,9 @@ let getPosts = (LIMIT_POST) => {
         }
     });
 };
+
+//
+
 
 let postSearchHomePage = (keyword) => {
     return new Promise(async (resolve, reject) => {
@@ -158,7 +161,7 @@ let getDataPageAllSpecializations = () => {
 module.exports = {
     getSpecializations,
     getClinics,
-    getDoctors, 
+    getDoctors,
     getPosts,
     postSearchHomePage,
     getDataPageAllClinics,

@@ -20,10 +20,10 @@ let router = express.Router();
 let LocalStrategy = passportLocal.Strategy;
 
 passport.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback: true
-    },
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+},
     async (req, email, password, done) => {
         try {
             await userService.findUserByEmail(email).then(async (user) => {
@@ -101,10 +101,14 @@ let initRoutes = (app) => {
     router.post('/booking-doctor-normal/create', home.postBookingDoctorPageNormal);
 
     router.get('/detail/post/:id', home.getDetailPostPage);
+    router.get('/handbook/:id', home.getDetailHandbook); //
+    router.get('/supporter/pagination/handbooks', home.getHandbookPaginationAPI);; //
+
     router.get('/detail/clinic/:id', home.getDetailClinicPage);
     router.get('/booking-info/:id', home.getInfoBookingPage);
 
     router.get('/all-posts', home.getPostsWithPagination);
+    router.get('/all-handbook', home.getHandbookWithPagination); //
     router.get('/posts/search/', home.getPostSearch);
 
     router.get('/users/manage/specialization', auth.checkLoggedIn, admin.getSpecializationPage);
@@ -165,8 +169,8 @@ let initRoutes = (app) => {
 
     router.get("/login", auth.checkLoggedOut, auth.getLogin);
 
-    router.post('/login', function(req, res, next) {
-        passport.authenticate('local', function(err, user, info) {
+    router.post('/login', function (req, res, next) {
+        passport.authenticate('local', function (err, user, info) {
             if (err) {
                 return next(err);
             }
@@ -175,7 +179,7 @@ let initRoutes = (app) => {
                 return res.redirect('/login');
             }
 
-            req.logIn(user, function(err) {
+            req.logIn(user, function (err) {
                 if (err) {
                     return next(err);
                 }
@@ -190,7 +194,7 @@ let initRoutes = (app) => {
     });
 
     router.get('/register', auth.getRegister);
-    router.post("/register",  auth.postRegister);
+    router.post("/register", auth.postRegister);
     // router.get("/verify/:token", auth.verifyAccount);
 
     router.get("/logout", auth.checkLoggedIn, auth.getLogout);

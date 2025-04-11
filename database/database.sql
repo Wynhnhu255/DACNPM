@@ -257,7 +257,7 @@ INSERT INTO `posts` (`id`, `title`, `contentMarkdown`, `contentHTML`, `forDoctor
 -- Table handbook
 -- Create table with proper PRIMARY KEY
 CREATE TABLE `handbooks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `contentMarkdown` text DEFAULT NULL,
   `contentHTML` text DEFAULT NULL,
@@ -277,28 +277,467 @@ INSERT INTO `handbooks`
 (`id`, `title`, `contentMarkdown`, `contentHTML`, `forDoctorId`, `forSpecializationId`, `forClinicId`, `writerId`, `confirmByDoctor`, `image`, `createdAt`, `updatedAt`, `deletedAt`) 
 VALUES
 (1, 'Lời khuyên', '### Lời khuyên y tế\n\n**Cho mình một ngày trong tuần để thư giãn** Đây là một quy tắc đơn giản...', 
-'<h3>Lời khuyên y tế</h3><p><strong>Cho mình một ngày trong tuần để thư giãn</strong> Đây là một quy tắc đơn giản...</p>', -1, 1, -1, 1, NULL, NULL, '2020-11-13 20:29:11', '2020-11-13 20:35:21', NULL),
+'<h2>Mười lời khuyên dinh dưỡng từ Bộ Y tế</h2>
+<p>Ngày 29/11/2024, Bộ Y tế đã ban hành quyết định số 3594/QĐ-BYT ban hành “Mười lời khuyên dinh dưỡng hợp lý đến năm 2030”.</p>
+
+<p>
+    <img src="https://www.yhct.vn/wp-content/uploads/2025/01/474267118_1144488324350534_9084351552416997311_n.jpeg" 
+         alt="Mười lời khuyên dinh dưỡng" 
+         style="max-width: 100%; height: auto;">
+</p>
+
+<h3>Mười lời khuyên bao gồm:</h3>
+<ol>
+    <li><strong>Lời khuyên số 1:</strong> Ăn đủ, cân đối và đa dạng các loại thực phẩm hằng ngày; phối hợp hợp lý thực phẩm có nguồn gốc động vật và thực vật.</li>
+    <li><strong>Lời khuyên số 2:</strong> Sử dụng hằng ngày các loại thực phẩm giàu vi chất dinh dưỡng; các loại rau, củ, quả có màu sắc khác nhau. Đọc kỹ thông tin dinh dưỡng trên nhãn thực phẩm trước khi mua và sử dụng.</li>
+    <li><strong>Lời khuyên số 3:</strong> Sử dụng hợp lý các loại thực phẩm giàu đạm; nên ăn cá, thịt gia cầm và các loại hạt trong bữa ăn hằng ngày; ăn có mức độ các loại thịt đỏ.</li>
+    <li><strong>Lời khuyên số 4:</strong> Uống đủ nước hằng ngày.</li>
+    <li><strong>Lời khuyên số 5:</strong> Phụ nữ có thai và bà mẹ cho con bú cần thực hiện chế độ ăn uống hợp lý; bổ sung sắt và acid folic hoặc đa vi chất theo hướng dẫn.</li>
+    <li><strong>Lời khuyên số 6:</strong> Cho trẻ bú mẹ sớm trong vòng một giờ đầu sau khi sinh, nuôi con hoàn toàn bằng sữa mẹ trong 6 tháng đầu; cho trẻ ăn bổ sung hợp lý và tiếp tục cho trẻ bú mẹ đến 24 tháng tuổi hoặc lâu hơn.</li>
+    <li><strong>Lời khuyên số 7:</strong> Hạn chế sử dụng các loại thức ăn chiên rán, thức ăn nhanh nhiều dầu mỡ, thức ăn nhiều muối, nhiều đường, đồ uống có đường, có cồn.</li>
+    <li><strong>Lời khuyên số 8:</strong> Bảo đảm an toàn trong lựa chọn, chế biến và bảo quản thực phẩm.</li>
+    <li><strong>Lời khuyên số 9:</strong> Tổ chức tốt bữa ăn gia đình. Ăn đủ bữa (sáng, trưa, tối) phù hợp với lứa tuổi, không ăn quá no, không bỏ bữa.</li>
+    <li><strong>Lời khuyên số 10:</strong> Duy trì và kiểm soát cân nặng hợp lý; thực hiện lối sống năng động, tăng cường hoạt động thể lực phù hợp với lứa tuổi và tình trạng sức khỏe.</li>
+</ol>
+
+<p>Theo Bộ Y tế, dinh dưỡng cân đối, hợp lý là yếu tố quan trọng nhằm hướng tới phát triển toàn diện về tầm vóc, thể chất, trí tuệ của người Việt Nam và nâng cao chất lượng cuộc sống.</p>
+
+<p>Mười lời khuyên dinh dưỡng trên cung cấp một hướng dẫn chi tiết và toàn diện để xây dựng một chế độ ăn uống lành mạnh và cân bằng. Các lời khuyên này đã tập trung vào nhiều khía cạnh quan trọng của dinh dưỡng, từ việc lựa chọn thực phẩm, chế biến đến việc duy trì lối sống lành mạnh. Người dân nên kết hợp các lời khuyên này và tham khảo thêm ý kiến của các Bác sĩ chuyên khoa để có một chế độ dinh dưỡng tốt nhất cho bản thân.</p>
+
+<p><strong>BS. Trần Công Hùng</strong><br>
+Khoa Vật lý trị liệu – Phục hồi chức năng<br>
+Bệnh viện Y học cổ truyền TP.HCM</p>
+', -1, 1, -1, 1, NULL, NULL, '2020-11-13 20:29:11', '2020-11-13 20:35:21', NULL),
 
 (2, 'Cách dùng thuốc', '### Cách dùng thuốc hợp lý\n\n- **Không tự ý dùng thuốc kháng sinh** Kháng sinh là vũ khí mạnh nhưng cần đúng chỉ định...', 
-'<h3>Cách dùng thuốc hợp lý</h3><ul><li><strong>Không tự ý dùng thuốc kháng sinh</strong> Kháng sinh là vũ khí mạnh...</li>...</ul>', -1, 2, -1, 2, NULL, NULL, '2020-11-14 10:12:34', '2020-11-14 10:45:21', NULL),
+'<div class="article-wrapper p-4">
+    <h2 class="article-title mb-4">Sử dụng thuốc an toàn hợp lý</h2>
+    <p class="article-paragraph">
+        Có thể bạn sẽ dễ dàng tìm thấy bất kỳ loại thuốc nào bạn muốn tại các nhà thuốc. Tuy nhiên làm sao để sử dụng thuốc hiệu quả, an toàn là chuyện không đơn giản. Bởi vì thuốc thật sự là “con dao hai lưỡi”, ngoài tác dụng điều trị, chúng hoàn toàn có khả năng gây nguy hiểm cho người uống nếu không được sử dụng hợp lý.
+    </p>
+
+    <!-- Ảnh chèn trước mục Thuốc bán theo đơn -->
+    <div class="text-center my-4">
+        <img src="https://nhidong.org.vn/UploadImages/bvnhidong/PHN11/2018_6/28/Hinh3.jpg" alt="Sử dụng thuốc an toàn" class="img-fluid rounded">
+    </div>
+
+    <h4 class="mt-4">1. Thuốc bán theo đơn</h4>
+    <ul class="article-list">
+        <li>
+            Thuốc bán theo đơn là những thuốc chỉ nên dùng khi có chỉ định của bác sĩ và về nguyên tắc thuốc chỉ được bán ra khi người mua có đơn thuốc của bác sĩ...
+        </li>
+        <li>
+            Kháng sinh là một trong những thuốc thuộc nhóm kê đơn...
+        </li>
+        <li>
+            Bên cạnh kháng sinh, thuốc kháng viêm - giảm đau là nhóm thuốc thứ hai thường được sử dụng bừa bãi...
+        </li>
+        <li>
+            Một thuốc phù hợp với người này không hẳn đã có hiệu quả và an toàn đối với người kia...
+        </li>
+        <li>
+            Trong quá trình đang điều trị, nếu muốn dùng thêm thuốc khác ngay cả chỉ là thuốc bổ hãy tham khảo ý kiến của bác sĩ...
+        </li>
+    </ul>
+
+    <h4 class="mt-4">2. Thuốc bán không theo đơn</h4>
+    <ul class="article-list">
+        <li>
+            Thuốc bán không theo đơn là những thuốc có thể mua mà không cần phải có chỉ định của bác sĩ...
+        </li>
+        <li>
+            Mặc dù thuốc có thể mua khi chưa có chỉ định của bác sĩ, nhưng điều này không có nghĩa là thuốc hoàn toàn an toàn...
+        </li>
+        <li>
+            Đa số các chuyên gia đều khuyên rằng nên chọn thuốc không kê đơn chỉ có tác dụng làm dịu một triệu chứng mà thôi...
+        </li>
+        <li>
+            Vitamin, khoáng chất đóng vai trò rất quan trọng trong việc duy trì và tăng cường sức khỏe...
+        </li>
+        <li>
+            Trong đợt điều trị, hãy cố gắng ghi nhận tất cả những thuốc không kê đơn, thuốc bổ, thực phẩm chức năng...
+        </li>
+        <li>
+            Trước khi dùng bất kỳ thuốc nào hãy đọc kỹ hướng dẫn sử dụng và thông báo ngay cho bác sĩ hoặc dược sĩ...
+        </li>
+    </ul>
+
+    <p class="mt-4 font-italic">ThS. BS Phạm Đình Nguyên</p>
+</div>
+', -1, 2, -1, 2, NULL, NULL, '2020-11-14 10:12:34', '2020-11-14 10:45:21', NULL),
 
 (3, 'Phòng bệnh mùa lạnh', '### Cách phòng bệnh mùa lạnh hiệu quả\n\n- **Giữ ấm cơ thể** Đặc biệt là vùng cổ, ngực, tay chân và đầu...', 
-'<h3>Cách phòng bệnh mùa lạnh hiệu quả</h3><ul><li><strong>Giữ ấm cơ thể</strong> Đặc biệt là vùng cổ, ngực, tay chân...</li>...</ul>', -1, 3, -1, 3, NULL, NULL, '2020-11-15 08:22:10', '2020-11-15 08:45:55', NULL),
+'<div class="article-wrapper p-4">
+  <h2 class="article-title mb-4">Bệnh hay gặp vào mùa lạnh và cách phòng ngừa</h2>
+  <p class="article-paragraph">
+    <strong>SKĐS -</strong> Mùa đông theo Học thuyết Ngũ hành thuộc về hành Thủy, ứng với tạng Thận, thời tiết thiên về lạnh (hàn) và khô (táo), nên rất dễ mắc các bệnh về hô hấp, tuần hoàn và tiêu hóa...
+  </p>
+
+  <h4 class="mt-4">Các bệnh thường gặp khi thời tiết lạnh</h4>
+  <p class="article-paragraph">Do thời tiết mùa đông có tính hàn mà táo (lạnh, khô) nên dễ mắc các chứng bệnh sau:</p>
+
+  <h5 class="mt-3">Bệnh ở cơ quan hô hấp</h5>
+  <p>
+    Hệ hô hấp thuộc tạng Phế của y học cổ truyền. Phế được gọi là "Kiều tạng" tức là tạng rất dễ bị tổn thương. Khi tiếp xúc với không khí khô lạnh dễ gây nên tình trạng dị ứng như: ho, hắt hơi, sổ mũi, viêm đường hô hấp. Vì vậy, về mùa đông cần mặc ấm, giữ kín cổ, nhà ở tránh gió lùa. Người già yếu và trẻ em hạn chế đi ra ngoài khi trời lạnh giá. Trong nhà có thể xông hơi nhẹ nhàng bằng tinh dầu thơm hay đốt một quả bồ kết hoặc vỏ bưởi khô.
+  </p>
+
+  <h5 class="mt-3">Bệnh ở hệ tuần hoàn</h5>
+  <p>
+    Hệ tuần hoàn thuộc tạng Tâm, quy về hành Hỏa. Mùa đông thuộc hành Thủy. Thủy vốn khắc Hỏa, vì vậy các bệnh như: tăng huyết áp, suy tim, tâm phế mạn... có xu hướng nặng lên. Tiết trời lạnh giá làm co mạch máu ngoại biên dễ gây tai biến mạch máu não. Để phòng bệnh cần giữ ấm, đặc biệt với người mắc bệnh tim mạch, tránh ra ngoài ban đêm và bị gió lùa.
+  </p>
+  <div class="text-center my-3">
+    <img src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2021/10/16/photo-1634321518421-1634321522593181867252.jpg" alt="Tăng huyết áp dễ xảy ra vào mùa đông" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Tăng huyết áp, suy tim, tâm phế mạn dễ gặp trong mùa đông</small>
+  </div>
+
+  <h5 class="mt-3">Bệnh ở cơ quan tiêu hóa</h5>
+  <p>
+    Mùa đông trời lạnh ăn ngon miệng và hay ăn nhiều. Các bệnh về dạ dày tá tràng, xuất huyết tiêu hóa, tiêu chảy do virus... có xu hướng hay gặp. Để phòng bệnh cần ăn uống hợp vệ sinh, ăn khi vừa nấu xong còn nóng ấm, không ăn đồ sống lạnh. Người già không nên ăn quá no, sau khi ăn có thể nằm nghỉ nhẹ để trợ giúp tiêu hóa.
+  </p>
+
+  <h4 class="mt-4">Phòng bệnh mùa lạnh như thế nào?</h4>
+  <ol>
+    <li class="mb-2">
+      Giữ tinh thần thanh tịnh, tránh tức giận hay đau buồn. Sinh hoạt nên ngủ sớm dậy muộn, giữ ấm không gian sống, mặc đủ ấm để giúp khí huyết lưu thông.
+    </li>
+    <li class="mb-2">
+      Sử dụng các loại thuốc ôn bổ nguyên dương như nhung hươu, long nhãn, nhân sâm, thục địa, cẩu tích… tùy vào vùng miền và thể chất.
+    </li>
+    <li class="mb-2">
+      Ăn uống nóng sốt, bổ ấm tỳ vị. Điều chỉnh theo thể trạng:
+      <ul>
+        <li>Người âm hư: vừng, cơm nếp, mật ong, sữa, rau xanh, hoa quả.</li>
+        <li>Người dương hư: hẹ, thịt chó.</li>
+        <li>Người khí hư: nhân sâm, hạt sen, táo, củ mài.</li>
+        <li>Người huyết hư: vải, mộc nhĩ, ba ba, gan dê.</li>
+        <li>Người dương thịnh: hoa quả, rau xanh, mướp đắng.</li>
+        <li>Người tắc mạch: đào nhân, cải dầu, đậu đen.</li>
+        <li>Người đờm nhiều: củ cải, rau tảo, sứa, hành tây.</li>
+        <li>Người khí uất: phật thủ, cam, vỏ cam, hồi hương.</li>
+        <li>Lao động trí óc: vừng, mật ong, hạt dẻ, rau kim châm.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="text-center my-3">
+    <img src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2021/10/16/photo-1634321523920-1634321524152406328608.jpg" alt="Vị thuốc đương quy bồi bổ sức khỏe" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Vị thuốc đương quy phối hợp với những vị thuốc khác bồi bổ sức khỏe</small>
+  </div>
+
+  <h4 class="mt-4">Món ăn bài thuốc bồi bổ sức khỏe trong mùa đông</h4>
+  <ul>
+    <li><strong>Bài 1:</strong> Gà trống 1 con, gừng tươi, rượu trắng, hầm nhừ. Tác dụng: bồi bổ ngũ tạng, thích hợp với người dương hư.</li>
+    <li><strong>Bài 2:</strong> Chim bồ câu 1 con, ba kích, hoài sơn, kỷ tử… hầm nhừ. Tác dụng ôn bổ thận dương, ấm tỳ vị.</li>
+    <li><strong>Bài 3:</strong> Nhân sâm, hoàng kỳ, hạt tiêu, đinh hương, nước xương… làm lẩu bổ khí ôn dương, chống rét.</li>
+    <li><strong>Bài 4:</strong> Ngân nhĩ, kỷ tử hầm mềm với đường phèn. Tác dụng dưỡng âm sinh tân, dưỡng khí huyết.</li>
+    <li><strong>Bài 5:</strong> Dâm dương hoắc, tiên mao, nhục thung dung… ngâm rượu, cô đặc, làm viên hoàn. Công dụng bổ thận sinh tinh, trợ dương bổ âm.</li>
+  </ul>
+
+  <p class="mt-4 font-italic">BS Vũ Quốc Trung</p>
+  <p class="text-muted small">Nguồn: <a href="https://suckhoedoisong.vn/benh-hay-gap-vao-mua-lanh-va-cach-phong-ngua-169211016013904188.htm" target="_blank">suckhoedoisong.vn</a></p>
+</div>
+', -1, 3, -1, 3, NULL, NULL, '2020-11-15 08:22:10', '2020-11-15 08:45:55', NULL),
 
 (4, 'Dinh dưỡng cho bé', '### Những lưu ý dinh dưỡng cho trẻ nhỏ\n\n- **Cho bé ăn đa dạng thực phẩm** Bao gồm cả rau xanh, thịt cá, trứng, sữa...', 
-'<h3>Những lưu ý dinh dưỡng cho trẻ nhỏ</h3><ul><li><strong>Cho bé ăn đa dạng thực phẩm</strong> Bao gồm cả rau xanh...</li>...</ul>', -1, 4, -1, 4, NULL, NULL, '2020-11-16 13:40:00', '2020-11-16 13:55:21', NULL),
+'<div class="article-wrapper p-4">
+  <h2 class="article-title mb-3">Chăm sóc, dinh dưỡng cho bé phù hợp theo từng độ tuổi</h2>
+  <p class="text-muted"><strong>Ngô Thị Oanh</strong> - Thạc sĩ, Bác sĩ y khoa</p>
+  <p class="article-paragraph">
+    Bài viết được tham vấn chuyên môn cùng ThS.BS Ngô Thị Oanh - Bác sĩ Nhi - Khoa Nhi - Sơ sinh - Bệnh viện Đa khoa Quốc tế Vinmec Hạ Long.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/large_20200414_104819_327171_nen_cho_tre_an_hai_max_1800x1800_jpg_115819c424.jpg" alt="Trẻ ăn dặm" class="img-fluid rounded">
+  </div>
+
+  <p>
+    Dinh dưỡng cho trẻ em dựa trên các nguyên tắc giống như dinh dưỡng cho người lớn. Mọi người đều cần các loại chất dinh dưỡng giống nhau như vitamin, khoáng chất, carbohydrate, protein và chất béo. Tuy nhiên, ở mỗi độ tuổi, nhu cầu dinh dưỡng về thành phần và số lượng là khác nhau.
+  </p>
+
+  <h4 class="mt-4">1. Dinh dưỡng cho trẻ sơ sinh</h4>
+  <p>Trong 6 tháng đầu, trẻ chỉ cần sữa mẹ hoặc sữa công thức. Sữa mẹ giúp tăng cường miễn dịch và phát triển toàn diện.</p>
+  <p>Sau 4 tháng, hệ tiêu hóa phát triển hơn, trẻ có thể bắt đầu tập ăn dặm với thực phẩm lỏng, tránh thức ăn đặc để hạn chế nghẹt thở.</p>
+  <p>Từ 6 tháng, có thể cho trẻ ăn dặm thêm: ngũ cốc, trái cây, rau củ, thịt xay nhuyễn nhằm bổ sung sắt và kẽm.</p>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/small_20200403_053031_563933_unnamed_12_max_1800x1800_jpg_c8a035ece5.jpg" alt="Giai đoạn tập ăn dặm" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Giai đoạn tập ăn, trẻ có thể ăn được thực phẩm xay nhuyễn</small>
+  </div>
+
+  <p><strong>Lưu ý khi cho trẻ ăn dặm:</strong></p>
+  <ul>
+    <li>Không ăn dặm trước 4 - 6 tháng tuổi do phản xạ đẩy lưỡi còn tồn tại.</li>
+    <li>Không ăn dặm quá muộn (sau 6 tháng) để tránh thiếu dinh dưỡng, biếng ăn và dị ứng.</li>
+  </ul>
+
+  <h4 class="mt-4">2. Trẻ từ 6-12 tháng</h4>
+  <p>Từ 6-8 tháng: tiếp tục bú sữa 3-5 lần/ngày, bắt đầu ăn rau củ nghiền, trái cây mềm, nấu chín kỹ.</p>
+  <p>Từ 8-12 tháng: bổ sung thêm thịt băm nhuyễn, sữa vẫn nên duy trì 3-4 lần/ngày.</p>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/small_20200418_101035_212914_tre_bieng_an_phai_l_max_1800x1800_jpg_02e86a9f84.jpg" alt="Trẻ tiếp tục bú sữa mẹ" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Giai đoạn 6-12 tháng, trẻ nên được tiếp tục bú sữa mẹ</small>
+  </div>
+
+  <h4 class="mt-4">3. Dinh dưỡng cho trẻ từ 1 tuổi</h4>
+  <p>Ở tuổi này, bé cần tăng lượng thức ăn dặm, giảm dần bú sữa. Bổ sung: thịt, trái cây, rau, ngũ cốc, sữa nguyên kem.</p>
+  <p>Bé có thể ăn ít mỗi bữa nhưng nhiều bữa hơn trong ngày (4-6 bữa). Cần thêm bữa phụ: sữa, trái cây, sữa chua…</p>
+
+  <h4 class="mt-4">4. Trẻ từ 2-5 tuổi</h4>
+  <p>Trẻ có thể ăn như người lớn, chuyển sang ăn cơm cùng gia đình. Nên cho ăn 3 bữa chính và 2 bữa phụ/ngày.</p>
+  <p>Bữa phụ nên gồm: trái cây, sữa, sữa chua để hỗ trợ hệ tiêu hóa.</p>
+
+  <h5 class="mt-4">Tổng kết</h5>
+  <p>
+    Dù ở độ tuổi nào, dinh dưỡng luôn là yếu tố then chốt giúp bé phát triển toàn diện. Cần có chế độ ăn hợp lý, đầy đủ và cân đối.
+  </p>
+  <p>
+    Thiếu dinh dưỡng có thể dẫn đến biếng ăn, chậm lớn, kém hấp thu. Nếu trẻ có dấu hiệu này, cần bổ sung lysine, các vi chất thiết yếu như kẽm, selen, vitamin nhóm B để hỗ trợ tiêu hóa và tăng hấp thu.
+  </p>
+
+  <p class="text-muted mt-3 small">Tham khảo thêm: <a href="#">Các dấu hiệu bé thiếu kẽm</a> | <a href="#">Thiếu vi chất và tình trạng không tăng cân</a></p>
+</div>
+', -1, 4, -1, 4, NULL, NULL, '2020-11-16 13:40:00', '2020-11-16 13:55:21', NULL),
 
 (5, 'Phục hồi sau phẫu thuật', '### Hướng dẫn phục hồi sau phẫu thuật\n\n- **Tuân thủ đúng chỉ định của bác sĩ** Về chế độ ăn, nghỉ ngơi, vận động...', 
-'<h3>Hướng dẫn phục hồi sau phẫu thuật</h3><ul><li><strong>Tuân thủ đúng chỉ định của bác sĩ</strong> Về chế độ ăn...</li>...</ul>', -1, 5, -1, 5, NULL, NULL, '2020-11-17 15:25:30', '2020-11-17 15:40:11', NULL),
+'<div class="article-wrapper p-4">
+  <h2 class="article-title mb-3">Phục hồi sức khoẻ cho người bệnh sau phẫu thuật</h2>
+
+  <p>
+    Sau khi trải qua một cuộc phẫu thuật dù nhỏ hay lớn, người bệnh đều phải chịu nhiều đau đớn, khó chịu do mất máu và mất sức lực. Do đó sau khi mổ, họ cần một chế độ sinh hoạt, dinh dưỡng thật tốt và hợp lý để chống nhiễm khuẩn, đồng thời nhanh liền vết mổ và hồi phục sức khỏe.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://visuckhoecongdong.vn/wp-content/uploads/2021/11/phuc-hoi-cho-nguoi-phau-thuat-2-1280x800.jpg" alt="Vận động nhẹ nhàng sau phẫu thuật" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Hãy vận động nhẹ nhàng ngay khi bạn có thể</small>
+  </div>
+
+  <h4 class="mt-4">1. Vận động nhẹ nhàng ngay khi có thể</h4>
+  <p>
+    Rời khỏi giường bệnh và vận động nhẹ nhàng: Ngay khi có thể, hãy đứng dậy và bắt đầu di chuyển. Chuyển động làm tăng lưu lượng máu, giúp chữa bệnh. Đi bộ giúp ngăn ngừa các cục máu đông, giảm nguy cơ viêm phổi. Khi bác sĩ cho phép, hãy bắt đầu liệu pháp kéo giãn mô sẹo để lấy lại sức mạnh cơ bắp.
+  </p>
+
+  <h4 class="mt-4">2. Chăm sóc vết thương đúng cách</h4>
+  <p>
+    Mặc quần áo không gây kích ứng vết mổ. Thay băng theo hướng dẫn và quan sát dấu hiệu nhiễm trùng. Nếu ngứa hoặc khó chịu, liên hệ bác sĩ để điều trị. Tránh ánh nắng trực tiếp lên vết sẹo mới, sử dụng kem chống nắng theo chỉ định.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://visuckhoecongdong.vn/wp-content/uploads/2021/11/phuc-hoi-cho-nguoi-sau-phau-thuat.jpg" alt="Chế độ dinh dưỡng sau phẫu thuật" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Chủ động điều chỉnh chế độ dinh dưỡng phù hợp với thể trạng sau phẫu thuật</small>
+  </div>
+
+  <h4 class="mt-4">3. Đảm bảo dinh dưỡng cho bệnh nhân</h4>
+  <p>
+    Sau phẫu thuật, bệnh nhân thường chán ăn nhưng cần nạp đủ năng lượng để phục hồi. Protein từ thịt gà, trứng rất cần thiết. Vitamin C từ trái cây thúc đẩy làm lành vết thương. Sắt và B12 hỗ trợ tạo máu. Ăn sữa chua và granola giúp tăng cường miễn dịch nhờ chất xơ và men vi sinh.
+  </p>
+  <p>
+    Giảm ăn muối và đường. Ăn các bữa nhỏ nhiều lần trong ngày để cơ thể hấp thu tốt hơn.
+  </p>
+
+  <h4 class="mt-4">4. Dùng các chế phẩm bổ sung hợp lý</h4>
+  <p>
+    Có thể dùng multivitamin, kẽm và thuốc bổ nếu cần. Tránh các sản phẩm chứa dầu cá hoặc tỏi vì có thể ảnh hưởng đến vết mổ. Luôn hỏi ý kiến bác sĩ trước khi sử dụng bất kỳ thực phẩm chức năng hay thuốc bổ nào.
+  </p>
+</div>
+', -1, 5, -1, 5, NULL, NULL, '2020-11-17 15:25:30', '2020-11-17 15:40:11', NULL),
 
 (6, 'Ngủ đủ giấc', '### Vì sao phải ngủ đủ giấc?\n\n- **Cải thiện trí nhớ và khả năng học tập** Giấc ngủ giúp não bộ xử lý và lưu giữ thông tin...', 
-'<h3>Vì sao phải ngủ đủ giấc?</h3><ul><li><strong>Cải thiện trí nhớ và khả năng học tập</strong> Giấc ngủ giúp não bộ xử lý...</li>...</ul>', -1, 6, -1, 6, NULL, NULL, '2020-11-18 09:10:45', '2020-11-18 09:32:00', NULL),
+'<div class="article-wrapper p-4">
+  <h2 class="article-title mb-3">Ngủ đủ giấc là như thế nào? Lý do bạn cần ngủ đủ giấc</h2>
+
+  <p>
+    Ngủ đủ giấc rất quan trọng đối với mọi người ở mọi lứa tuổi để có sức khỏe tốt. Mọi người thường giảm giấc ngủ cho công việc, cho nhu cầu gia đình hoặc thậm chí để xem một chương trình hay trên truyền hình. Nhưng nếu không ngủ đủ giấc là một thói quen lâu dài, điều này có thể tăng nguy cơ của nhiều vấn đề sức khỏe.
+  </p>
+
+  <h4 class="mt-4">1. Thế nào là ngủ đủ giấc</h4>
+  <p>
+    Ngủ đủ giấc là điều rất quan trọng với tất cả mọi người ở tất cả mọi độ tuổi để đảm bảo một sức khỏe tốt và năng lượng cho hoạt động hàng ngày. Việc cắt giảm giấc ngủ thường xuyên có thể dẫn đến nguy cơ mắc các bệnh như béo phì, đái tháo đường tuýp 2, tăng huyết áp và bệnh tim mạch.
+  </p>
+  <p>
+    Thời lượng giấc ngủ cần thiết tùy vào độ tuổi, trẻ em cần nhiều hơn người lớn. Viện Hàn lâm Y học giấc ngủ Mỹ đưa ra các khuyến nghị cụ thể theo nhóm tuổi.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/medium_20200423_022833_065077_tap_the_duc_max_1800x1800_jpg_34f71ed172.jpg" alt="Tập thể dục giúp ngủ ngon" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Tập thể dục mỗi ngày giúp cơ thể dễ đi vào giấc ngủ hơn</small>
+  </div>
+
+  <p>
+    Một số lời khuyên giúp bạn ngủ đủ và ngon hơn:
+    <ul>
+      <li>Giữ lịch ngủ cố định, kể cả cuối tuần.</li>
+      <li>Không gian ngủ yên tĩnh, tối và mát mẻ.</li>
+      <li>Tránh dùng điện thoại, TV, máy tính trước khi ngủ.</li>
+      <li>Không ăn no, tránh caffeine và rượu bia trước giờ ngủ.</li>
+      <li>Tập thể dục đều đặn nhưng không sát giờ đi ngủ.</li>
+    </ul>
+  </p>
+
+  <h4 class="mt-4">2. Những lý do khiến bạn cần ngủ đủ giấc</h4>
+  <p>
+    Ngủ đủ giấc không chỉ giúp bạn cảm thấy tỉnh táo, sảng khoái mà còn cải thiện hiệu suất làm việc và sức khỏe tổng thể. Một số lợi ích rõ ràng như:
+  </p>
+
+  <ul>
+    <li><strong>Giảm tai nạn giao thông:</strong> Giấc ngủ kém làm suy giảm sự tỉnh táo và phản xạ khi lái xe.</li>
+    <li><strong>Cải thiện tâm trạng:</strong> Ngủ đủ giúp bạn bớt căng thẳng và giảm nguy cơ trầm cảm.</li>
+    <li><strong>Bảo vệ sức khỏe tim mạch:</strong> Giấc ngủ tốt giúp ổn định huyết áp và nhịp tim.</li>
+    <li><strong>Tăng khả năng ghi nhớ:</strong> Ngủ giúp củng cố ký ức và tăng khả năng tập trung.</li>
+    <li><strong>Giảm nguy cơ tiểu đường:</strong> Ngủ giúp điều chỉnh insulin và glucose trong máu.</li>
+  </ul>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/medium_20200604_093938_848104_bien_chung_mach_mau_max_1800x1800_png_9f383ac436.png" alt="Giấc ngủ và tim mạch" class="img-fluid rounded">
+    <small class="d-block text-muted mt-1">Ngủ đủ giúp bảo vệ tim mạch và ngăn ngừa các bệnh lý nguy hiểm</small>
+  </div>
+
+  <ul>
+    <li><strong>Hỗ trợ sinh lý:</strong> Giấc ngủ ảnh hưởng đến hormone giới tính, cải thiện sinh lý nam và nữ.</li>
+    <li><strong>Làm đẹp da:</strong> Ngủ giúp sản sinh collagen, hạn chế nếp nhăn và lão hóa da.</li>
+    <li><strong>Hỗ trợ giảm cân:</strong> Giấc ngủ điều hòa hormone đói no, giảm cảm giác thèm ăn.</li>
+    <li><strong>Tăng tuổi thọ:</strong> Người có giấc ngủ tốt có tuổi thọ cao hơn.</li>
+    <li><strong>Tăng miễn dịch:</strong> Ngủ đủ giúp tạo ra kháng thể chống lại bệnh tật.</li>
+    <li><strong>Tránh ngủ gật:</strong> Giúp bạn luôn tỉnh táo khi học tập, làm việc, sinh hoạt.</li>
+  </ul>
+
+  <p class="mt-3">
+    Ngoài việc ngủ đủ thời gian, bạn cũng cần quan tâm đến chất lượng giấc ngủ. Nếu bạn ngủ đủ giờ mà vẫn thấy mệt mỏi, thức giấc nhiều lần hay ngủ gật ban ngày, có thể bạn đang bị rối loạn giấc ngủ và cần đến gặp chuyên gia để được tư vấn.
+  </p>
+
+  <p class="mt-2 text-muted">
+    <em>Bài viết tham khảo nguồn: apa.org, cdc.gov, webmd.com, intermountainhealthcare.org</em>
+  </p>
+</div>
+', -1, 6, -1, 6, NULL, NULL, '2020-11-18 09:10:45', '2020-11-18 09:32:00', NULL),
 
 (7, 'Tập thể dục đúng cách', '### Nguyên tắc tập luyện hiệu quả\n\n- **Khởi động kỹ trước khi tập** Tránh chấn thương và giúp cơ thể thích nghi...', 
-'<h3>Nguyên tắc tập luyện hiệu quả</h3><ul><li><strong>Khởi động kỹ trước khi tập</strong> Tránh chấn thương...</li>...</ul>', -1, 7, -1, 7, NULL, NULL, '2020-11-19 14:00:00', '2020-11-19 14:20:05', NULL),
+'<div class="article-wrapper p-4">
+  <h2 class="article-title mb-4 text-uppercase">TẬP THỂ DỤC HIỆU QUẢ</h2>
+
+  <p>
+    Bí quyết tập thể dục đúng cách chẳng những mang đến cho bạn nhiều lợi ích sức khỏe mà còn giúp cơ thể bạn tránh khỏi những chấn thương không mong muốn. Vậy tập thể dục như thế nào là đúng cách?
+  </p>
+  <p>
+    Dưới đây là 5 bí quyết tập thể dục đúng cách để quá trình tập luyện của bạn đạt hiệu quả cao.
+  </p>
+
+  <h4 class="mt-4">1. Ăn nhẹ và uống nước trước khi tập thể dục</h4>
+  <p>
+    Nhiều người cho rằng tập thể dục khi bụng đói sẽ đốt cháy mỡ hiệu quả hơn, nhưng thực tế, bạn nên ăn nhẹ trước khoảng 45 phút - 1 tiếng để có đủ năng lượng tập luyện.
+  </p>
+  <p>
+    Một số món lý tưởng như: sữa chua ít béo với trái cây mọng, chuối, táo kèm bơ hạnh nhân,... Ngoài ra, hãy uống 400–500ml nước trước khi tập và tiếp tục bổ sung từng ngụm nhỏ sau mỗi 15 phút tập luyện.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://www.mediplus.vn/wp-content/uploads/2021/08/6cc3170ead015a5f0310-1.jpg" alt="Uống đủ nước khi tập thể dục" class="img-fluid rounded">
+    <small class="text-muted d-block mt-1">Việc uống đủ nước rất quan trọng để thải độc và giảm mỡ thừa</small>
+  </div>
+
+  <h4 class="mt-4">2. Kéo giãn cơ thể trước khi tập</h4>
+  <p>
+    Các bài tập kéo giãn giúp làm nóng cơ thể, tránh chấn thương và tăng hiệu quả luyện tập. Một ví dụ đơn giản là động tác gót chân chạm mông, đầu gối thẳng hướng xuống đất – giúp kéo căng cơ tứ đầu đùi.
+  </p>
+
+  <h4 class="mt-4">3. Thực hiện đa dạng các bài tập</h4>
+  <p>
+    Kết hợp các bài tập khác nhau (circuit training) giúp tăng nhịp tim, đốt calo tối đa và tác động lên nhiều nhóm cơ. Bạn có thể tập nhiều bài liên tục, nghỉ ít giữa các set để giữ cường độ cao.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://www.mediplus.vn/wp-content/uploads/2021/08/02fc31f94af1bdafe4e0.jpg" alt="Đa dạng bài tập" class="img-fluid rounded">
+    <small class="text-muted d-block mt-1">Đa dạng bài tập giúp đốt cháy calo hiệu quả hơn</small>
+  </div>
+
+  <h4 class="mt-4">4. Không sử dụng điện thoại khi tập luyện</h4>
+  <p>
+    Điện thoại khiến bạn phân tâm, giảm hiệu quả và kéo dài thời gian nghỉ. Tập trung vào bài tập sẽ giúp đốt mỡ tốt hơn và cải thiện hiệu suất rõ rệt.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://www.mediplus.vn/wp-content/uploads/2021/08/a49d68991391e4cfbd80.jpg" alt="Không dùng điện thoại khi tập" class="img-fluid rounded">
+    <small class="text-muted d-block mt-1">Tập trung luyện tập giúp kết nối cơ thể và tăng hiệu quả</small>
+  </div>
+
+  <h4 class="mt-4">5. Không tập thể dục quá sức của bản thân</h4>
+  <p>
+    Việc tập luyện quá mức sẽ dễ dẫn đến chấn thương, đau nhức và thậm chí phải dừng tập luyện. Luôn tập với cường độ vừa phải, tăng dần đều và lắng nghe cơ thể của bạn.
+  </p>
+
+  <p class="mt-3">
+    Khi biết áp dụng đúng các nguyên tắc này, bạn không chỉ có vóc dáng khỏe mạnh mà còn nâng cao sức đề kháng. Đừng quên lau khô người và tắm nước ấm sau khi tập để thư giãn và tránh cảm lạnh.
+  </p>
+</div>
+', -1, 7, -1, 7, NULL, NULL, '2020-11-19 14:00:00', '2020-11-19 14:20:05', NULL),
 
 (8, 'Khám sức khỏe định kỳ', '### Tại sao nên khám sức khỏe định kỳ?\n\n- **Phát hiện bệnh sớm** Đặc biệt là các bệnh mạn tính hoặc ung thư...', 
-'<h3>Tại sao nên khám sức khỏe định kỳ?</h3><ul><li><strong>Phát hiện bệnh sớm</strong> Đặc biệt là các bệnh mạn tính...</li>...</ul>', -1, 8, -1, 8, NULL, NULL, '2020-11-20 11:35:10', '2020-11-20 11:55:00', NULL);
+'<div class="article-wrapper p-4">
+  <h2 class="article-title mb-4 text-uppercase">Khám sức khỏe định kỳ: Bao lâu khám 1 lần?</h2>
+  <p class="author"><strong>Nguyễn Thị Ngọc</strong> – Thạc sĩ, Bác sĩ chuyên khoa II</p>
+  <p>
+    Bài viết được tư vấn chuyên môn bởi ThS.BS Nguyễn Thị Ngọc – Bác sĩ Nội tổng quát – Nội tiết – Bệnh viện Vinmec Central Park.
+  </p>
+
+  <p>
+    Khám sức khỏe định kỳ là phương pháp hiệu quả để bảo vệ sức khỏe, phát hiện sớm và ngăn ngừa nhiều bệnh lý nguy hiểm.
+  </p>
+
+  <h4 class="mt-4">1. Vì sao nên khám sức khỏe định kỳ?</h4>
+  <p>
+    Sức khỏe là vốn quý nhất. Việc khám định kỳ giúp phát hiện những bất thường tiềm ẩn, kể cả khi người bệnh không có triệu chứng rõ ràng. Khám tổng quát bao gồm kiểm tra thể chất, xét nghiệm máu, chẩn đoán hình ảnh,... giúp dự đoán nguy cơ bệnh và đưa ra các giải pháp kịp thời.
+  </p>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/medium_20200414_082609_201403_20190924_091609_692_max_1800x1800_jpg_2711845fff.jpg" alt="Khám sức khỏe định kỳ" class="img-fluid rounded">
+    <small class="text-muted d-block mt-1">Khám sức khỏe giúp mỗi người hiểu về tình trạng và nguy cơ gây bệnh</small>
+  </div>
+
+  <p>
+    Phát hiện bệnh ở giai đoạn sớm giúp tăng khả năng điều trị thành công, giảm chi phí, đồng thời điều chỉnh lối sống và chế độ dinh dưỡng phù hợp để tăng cường sức khỏe.
+  </p>
+
+  <h4 class="mt-4">2. Nên khám sức khỏe định kỳ bao lâu 1 lần?</h4>
+  <p>
+    Các chuyên gia y tế khuyến nghị khám sức khỏe 1–2 lần/năm. Tần suất này phụ thuộc vào độ tuổi, môi trường làm việc và yếu tố nguy cơ như tiền sử bệnh tật, thói quen sinh hoạt,...
+  </p>
+
+  <ul>
+    <li><strong>Tuổi 18–30:</strong> Tập trung vào bệnh truyền nhiễm, sức khỏe sinh sản.</li>
+    <li><strong>Tuổi 30–40:</strong> Tầm soát bệnh tim mạch, tiểu đường, rối loạn chuyển hóa,...</li>
+    <li><strong>Tuổi trung niên:</strong> Tầm soát ung thư (gan, phổi, vòm họng, tiền liệt tuyến,...), bệnh xương khớp, huyết áp.</li>
+  </ul>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/small_20200419_032406_714240_photo1524190642502_max_1800x1800_jpg_9d545b11ed.jpg" alt="Tầm soát ung thư" class="img-fluid rounded">
+    <small class="text-muted d-block mt-1">Nên tiến hành tầm soát ung thư định kỳ ở tuổi trung niên</small>
+  </div>
+
+  <p>
+    Người có yếu tố nguy cơ cao như hút thuốc, rượu bia, ít vận động nên khám thường xuyên hơn.
+  </p>
+
+  <h4 class="mt-4">3. Quy định khám sức khỏe định kỳ theo thông tư mới nhất</h4>
+  <p>
+    Theo Thông tư 19/2016/TT-BYT và Luật An toàn lao động 2015:
+  </p>
+  <ul>
+    <li>Người lao động phải được khám sức khỏe ít nhất 1 lần/năm.</li>
+    <li>Người làm việc nặng nhọc, độc hại, người cao tuổi, phụ nữ,... cần khám 6 tháng/lần.</li>
+    <li>Khám phát hiện bệnh nghề nghiệp cho người tiếp xúc với yếu tố nguy cơ.</li>
+    <li>Chi phí do cơ quan sử dụng lao động chi trả.</li>
+  </ul>
+
+  <div class="text-center my-3">
+    <img src="https://www.vinmec.com/static/uploads/medium_20190219_021909_913100_sktqwp_1_max_1800x1800_jpeg_db7eaf6ba2.jpg" alt="Khám sức khỏe cho người lao động" class="img-fluid rounded">
+    <small class="text-muted d-block mt-1">Người lao động phải khám sức khỏe tổng quát ít nhất một năm một lần</small>
+  </div>
+
+  <p>
+    Khám sức khỏe định kỳ giúp bảo vệ bản thân và đóng góp vào sự phát triển bền vững của doanh nghiệp, xã hội.
+  </p>
+</div>
+', -1, 8, -1, 8, NULL, NULL, '2020-11-20 11:35:10', '2020-11-20 11:55:00', NULL);
 
 
 -- -----------------------------------------------------------

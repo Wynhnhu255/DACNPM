@@ -238,6 +238,71 @@ function generatePostPagination(page) {
     })
 }
 
+// Handbook:
+let currentPage = 1;
+let total = $('#paginationHandbook').data('total');
+function showHandbooksForUsers() {
+    if (total === 1) {
+        $(' .li-next-client').addClass('disabled');
+    }
+    $('.page-handbook-next-client').on('click', function (e) {
+        e.preventDefault();
+        currentPage++;
+        $(' .li-pre-client').removeClass('disabled');
+
+        if (currentPage === total) {
+            $(' .li-next-client').addClass('disabled');
+        }
+        if (currentPage > total) return;
+        generateHandbookPagination(currentPage);
+    });
+
+    $('.page-handbook-pre-client').on('click', function (e) {
+        e.preventDefault();
+        currentPage--;
+        $(' .li-next-client').removeClass('disabled');
+        if (currentPage === 1) {
+            $(' .li-pre-client').addClass('disabled');
+        }
+        if (currentPage === 0) return;
+        generateHandbookPagination(currentPage);
+    });
+}
+
+function generateHandbookPagination(page) {
+    $.ajax({
+        url: `${window.location.origin}/supporter/pagination/handbooks?page=${page}`,
+        method: 'GET',
+        success: function (data) {
+            $("#list-posts-client").empty();
+            let html = '';
+            data.handbooks.rows.forEach((handbook) => {
+                html += `
+                    <a class="text-decoration-none" href="/handbook/${handbook.id}">
+                        <div class=" mb-5 d-flex flex-row">
+                            <div class="img-post col-4">
+                                <img src="https://thietbikythuat.com.vn/wp-content/uploads/2021/01/linh-vuc-y-te-768x534.jpg">
+                            </div>
+                            <div class="col-8 d-flex flex-column">
+                                <h3 class="show-title-post">${handbook.title}</h3>
+                                <div class="show-content-post" style="color: black">
+                                    ${handbook.contentHTML.replace(/<\/?[^>]+(>|$)/g, "")}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            });
+            $("#list-posts-client").append(html);
+        },
+        error: function (err) {
+            alertify.error('An error occurs, please try again later!');
+            console.log(err)
+        }
+    });
+}
+
+
 function searchElasticClient() {
     $('#searchPostClient').on('keydown', function (event) {
         if (event.which === 13 || event.keyCode === 13) {
