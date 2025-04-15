@@ -17,31 +17,37 @@ let getAllPackages = async (req, res) => {
     }
 };
 
-let getPackageDetailById = async (req, res) => {
+exports.getPackageDetailById = async (req, res) => {
     try {
-        let packageId = req.params.id;
-        let packageData = await db.Package.findOne({
-            where: { 
-                id: packageId,
-                status: true 
-            },
-            raw: true
-        });
-
-        if (!packageData) {
-            return res.status(404).render('main/404.ejs');
+        const packageId = req.params.id;
+        
+        if (!packageId) {
+            return res.status(404).render('error', { 
+                message: 'Không tìm thấy gói khám' 
+            });
         }
-
-        return res.render('main/package/detail.ejs', {
-            package: packageData
+        
+        const packageData = await db.Package.findByPk(packageId);
+        
+        if (!packageData) {
+            return res.status(404).render('error', { 
+                message: 'Không tìm thấy gói khám với ID này' 
+            });
+        }
+        
+        return res.render('main/package/detail', {
+            package: packageData,
+            title: packageData.name + ' - Chi tiết gói khám'
         });
-    } catch (e) {
-        console.error(e);
-        return res.status(500).render('main/500.ejs');
+    } catch (error) {
+        console.error('Error in getPackageDetailById:', error);
+        return res.status(500).render('error', { 
+            message: 'Có lỗi xảy ra khi lấy thông tin gói khám' 
+        });
     }
 };
 
 module.exports = {
     getAllPackages: getAllPackages,
-    getPackageDetailById: getPackageDetailById
+    getPackageDetailById: exports.getPackageDetailById
 };

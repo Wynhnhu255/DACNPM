@@ -1,4 +1,7 @@
-<% extend("../../app.ejs") %>
+<% extend("../../app") %>
+
+<!-- Thêm fontawesome nếu chưa có -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
 .package-container {
@@ -20,7 +23,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.7); /* Giảm độ trong suốt từ 0.9 xuống 0.7 */
+    background: rgba(255, 255, 255, 0.7); 
     z-index: 1;
 }
 
@@ -104,39 +107,55 @@
     <i class="fas fa-home"></i> Về trang chủ
 </a>
 
+<!-- Nội dung chi tiết gói khám -->
 <div class="package-container">
     <div class="container">
+        <!-- Nội dung chi tiết gói khám -->
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="package-card card">
-                    <% if (package.image) { %>
-                        <img src="/images/packages/<%= package.image %>" 
-                             class="package-image"
-                             alt="<%= package.name %>">
-                    <% } %>
-                    
-                    <div class="card-body text-center">
-                        <h2 class="card-title mb-4"><%= package.name %></h2>
-                        <p class="card-text mb-4"><%= package.description %></p>
-                        <p class="card-text mb-4">
-                            <strong>Giá: </strong>
-                            <%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(package.price) %>
-                        </p>
+                    <% if (typeof package !== 'undefined' && package) { %>
+                        <% if (package.image) { %>
+                            <img src="/images/packages/<%= package.image %>" 
+                                 class="package-image"
+                                 alt="<%= package.name %>">
+                        <% } %>
                         
-                        <div class="text-center">
-                            <a href="https://m.me/660432980477560" 
-                               target="_blank" 
-                               class="facebook-link">
-                                <i class="fab fa-facebook-f"></i>
-                                Liên hệ tư vấn qua Facebook
-                            </a>
-                            <p class="mt-3 text-muted">
-                                Nhắn tin để được tư vấn chi tiết về gói khám
+                        <div class="card-body text-center">
+                            <h2 class="card-title mb-4"><%= package.name %></h2>
+                            <p class="card-text mb-4"><%= package.description %></p>
+                            <p class="card-text mb-4">
+                                <strong>Giá: </strong>
+                                <% try { %>
+                                    <%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(package.price) %>
+                                <% } catch(e) { %>
+                                    <%= package.price %> VNĐ
+                                <% } %>
                             </p>
+                            
+                            <div class="text-center">
+                                <a href="https://m.me/660432980477560" 
+                                   target="_blank" 
+                                   class="facebook-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                    Liên hệ tư vấn qua Facebook
+                                </a>
+                                <p class="mt-3 text-muted">
+                                    Nhắn tin để được tư vấn chi tiết về gói khám
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    <% } else { %>
+                        <div class="card-body text-center">
+                            <h2 class="card-title mb-4">Không tìm thấy thông tin gói khám</h2>
+                            <p class="card-text mb-4">Gói khám bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+                            <a href="/all-packages" class="btn btn-primary">Xem các gói khám khác</a>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="/js/package-detail.js"></script>

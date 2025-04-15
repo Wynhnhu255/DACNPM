@@ -1,5 +1,7 @@
 require('dotenv').config();
-import express from "express";
+const express = require('express');
+const app = express();
+const ejsExtend = require('express-ejs-extend');
 import configViewEngine from "./config/viewEngine";
 import initRoutes from "./routes/web";
 import bodyParser from "body-parser";
@@ -9,8 +11,11 @@ import methodOverride from 'method-override';
 import passPort from "passport";
 import session from "./config/session";
 
+// Cấu hình view engine
+app.engine('ejs', ejsExtend);
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
 
-let app = express();
 app.use(methodOverride('_method'));
 app.use(cookieParser('secret'));
 
