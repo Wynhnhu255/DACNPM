@@ -49,9 +49,14 @@
                                     <input type="password" class="form-control" id="password" name="password"
                                         placeholder="Password">
                                 </div>
-                                <div class="forgot-password">
-                                    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Quên mật
-                                        khẩu?</a>
+                                <div class="form-group">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="remember-me" name="remember">
+                                            <label class="form-check-label" for="remember-me">Ghi nhớ đăng nhập</label>
+                                        </div>
+                                        <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Quên mật khẩu?</a>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-login">Đăng nhập</button>
                             </form>
@@ -76,19 +81,78 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <label for="input-forgot-password">Email:</label>
-                        <input id="input-forgot-password" type="email" class="form-control" placeholder="Email...">
+                    <!-- Thông báo lỗi/thành công -->
+                    <div class="alert alert-danger d-none" id="reset-password-error"></div>
+                    <div class="alert alert-success d-none" id="reset-password-success"></div>
+                    
+                    <div class="form-group">
+                        <label for="email-reset">Email:</label>
+                        <input id="email-reset" type="email" class="form-control" placeholder="Nhập email của bạn">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" id="btn-forgot-password">
+                        <span class="spinner-border spinner-border-sm d-none" id="forgot-password-spinner" role="status"></span>
+                        <span id="forgot-password-text">Gửi yêu cầu</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            // Xử lý khi người dùng nhấn nút gửi yêu cầu
+            $('#btn-forgot-password').on('click', function() {
+                const email = $('#email-reset').val().trim();
+                
+                // Ẩn thông báo lỗi/thành công cũ
+                $('#reset-password-error').addClass('d-none');
+                $('#reset-password-success').addClass('d-none');
+                
+                // Validate email
+                if (!email) {
+                    $('#reset-password-error').text('Vui lòng nhập email').removeClass('d-none');
+                    return;
+                }
+                
+                // Hiển thị spinner và vô hiệu hóa nút
+                $('#forgot-password-spinner').removeClass('d-none');
+                $('#forgot-password-text').text('Đang xử lý...');
+                $('#btn-forgot-password').attr('disabled', true);
+                
+                // Gửi yêu cầu API
+                $.ajax({
+                    url: '/api/forgot-password',
+                    method: 'POST',
+                    data: { email: email },
+                    success: function(data) {
+                        $('#reset-password-success').text('Yêu cầu đặt lại mật khẩu đã được gửi tới email của bạn.').removeClass('d-none');
+                        $('#email-reset').val('');
+                        
+                        // Tự động đóng modal sau 5 giây
+                        setTimeout(function() {
+                            $('#forgotPasswordModal').modal('hide');
+                        }, 5000);
+                    },
+                    error: function(err) {
+                        let errorMessage = 'Đã có lỗi xảy ra. Vui lòng thử lại sau.';
+                        if (err.responseJSON && err.responseJSON.message) {
+                            errorMessage = err.responseJSON.message;
+                        }
+                        $('#reset-password-error').text(errorMessage).removeClass('d-none');
+                    },
+                    complete: function() {
+                        // Ẩn spinner và kích hoạt lại nút
+                        $('#forgot-password-spinner').addClass('d-none');
+                        $('#forgot-password-text').text('Gửi yêu cầu');
+                        $('#btn-forgot-password').attr('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

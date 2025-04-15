@@ -11,6 +11,9 @@ import passportLocal from 'passport-local';
 import userService from "./../services/userService";
 const packageController = require('../controllers/packageController');
 import userController from '../controllers/userController';
+import authController from "../controllers/authController";
+// Hoặc sử dụng
+// const authController = require('../controllers/authController');
 
 const multer = require('multer');
 const upload = multer();
@@ -210,6 +213,12 @@ let initRoutes = (app) => {
 
     router.post('/user/change-password', isAuthenticated, userController.changePassword);
     router.post('/user/update-info', isAuthenticated, userController.updateUserInfo);
+
+    // Thêm route API quên mật khẩu
+    router.post('/api/forgot-password', authController.handleForgotPassword);
+
+    router.get('/reset-password/:token', authController.getResetPasswordPage);
+    router.post('/reset-password/:token', authController.handleResetPassword);
 
     return app.use("/", router);
 };
