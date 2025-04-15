@@ -47,7 +47,9 @@
                 <div class="row">
                     <div class="col-8 ">
                         <h2></h2>
+                        
                         <hr>
+                        
                         <div id="list-posts-client">
                             <% handbooks.forEach(function(handbook) { %>
                                 <a class="text-decoration-none" href="/handbook/<%= handbook.id %>">
@@ -68,7 +70,7 @@
                                 </a>
                                 <% }) %>
                         </div>
-
+                        
                         <nav aria-label="navigation" id="paginationHandbook" data-total="<%= total %>">
                             <ul class="pagination">
                                 <li class="page-item disabled li-pre-client">
@@ -84,6 +86,21 @@
                                 </li>
                             </ul>
                         </nav>
+                        <% if (total > 1) { %>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    <% for(let i = 1; i <= total; i++) { %>
+                                        <li class="page-item <%= (typeof current !== 'undefined' && i == current) ? 'active' : '' %>">
+                                            <% if (typeof isSearchResults !== 'undefined' && isSearchResults) { %>
+                                                <a class="page-link" href="/handbook/search?q=<%= searchTerm %>&page=<%= i %>"><%= i %></a>
+                                            <% } else { %>
+                                                <a class="page-link" href="/all-handbook?page=<%= i %>"><%= i %></a>
+                                            <% } %>
+                                        </li>
+                                    <% } %>
+                                </ul>
+                            </nav>
+                        <% } %>
                     </div>
                     <div class="col-4 mt-3">
                         <input type="text" class="form-control" id="searchPostClient"

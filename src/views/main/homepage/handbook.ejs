@@ -32,9 +32,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-8">
+                        <!-- Giữ nguyên input, chỉ thêm placeholder mô tả rõ hơn -->
                         <div class="input-search-post">
                             <input id="searchInDetailPost" class="form-control" type="text" style="margin-top: 20px;"
-                                placeholder="Tìm kiếm bài đăng...">
+                                placeholder="Tìm kiếm cẩm nang y tế...">
                         </div>
                         <hr>
                         <div class="title-post">
@@ -59,6 +60,20 @@
                 selectors: "h2,h3,h4,h5"
             }).data("toc-tocify");
             toc.setOption("showEffect", "fadeIn");
+        });
+
+        // Xử lý tìm kiếm khi nhấn Enter trong ô tìm kiếm
+        $(document).ready(function() {
+            $('#searchInDetailPost').on('keydown', function(event) {
+                if (event.which === 13 || event.keyCode === 13) {
+                    event.preventDefault(); // Ngăn form submit mặc định
+                    let keyword = $(this).val().trim();
+                    if (keyword) {
+                        // Chuyển hướng đến trang tìm kiếm với từ khóa
+                        window.location.href = `/handbook/search?q=${encodeURIComponent(keyword)}`;
+                    }
+                }
+            });
         });
 
     </script>

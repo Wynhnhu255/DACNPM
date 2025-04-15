@@ -101,6 +101,11 @@ let initRoutes = (app) => {
     router.post('/booking-doctor-normal/create', home.postBookingDoctorPageNormal);
 
     router.get('/detail/post/:id', home.getDetailPostPage);
+    router.get('/handbook/search', home.getPostSearch);
+    router.get('/posts/search', (req, res) => {
+        const query = req.query.keyword || '';
+        res.redirect(`/handbook/search?q=${encodeURIComponent(query)}`);
+    });
     router.get('/handbook/:id', home.getDetailHandbook); //
     router.get('/supporter/pagination/handbooks', home.getHandbookPaginationAPI);; //
 

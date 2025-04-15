@@ -1,5 +1,6 @@
 require("dotenv").config();
 const homeService = require('../services/homeService');
+import db from '../models';  // Thêm dòng này
 import specializationService from "./../services/specializationService";
 import doctorService from "./../services/doctorService";
 import userService from "./../services/userService";
@@ -196,17 +197,58 @@ let getHandbookWithPagination = async (req, res) => {
     return res.render("main/homepage/allHandbookPagination.ejs", {
         handbooks: object.handbooks.rows,
         total: object.total,
-        striptags: striptags
+        striptags: striptags,
+        current: page // Thêm biến current để đánh dấu trang hiện tại
     })
 }
 
 let getPostSearch = async (req, res) => {
-    let search = req.query.keyword;
-    let results = await elasticService.findPostsByTerm(search);
-    return res.render('main/homepage/searchPost.ejs', {
-        search: search,
-        posts: results.hits.hits
-    });
+    try {
+        let keyword = req.query.q || req.query.keyword || '';
+        let page = +req.query.page || 1;
+        
+        const { Op } = require('sequelize');
+        
+        const limit = +process.env.LIMIT_GET_POST || 10;
+        const offset = (page - 1) * limit;
+        
+        // Tìm kiếm handbooks
+        const results = await db.Handbook.findAndCountAll({
+            where: {
+                [Op.or]: [
+                    { title: { [Op.like]: `%${keyword}%` } },
+                    { contentHTML: { [Op.like]: `%${keyword}%` } },
+                    { contentMarkdown: { [Op.like]: `%${keyword}%` } }
+                ]
+            },
+            order: [['createdAt', 'DESC']],
+            raw: true,
+            limit: limit,
+            offset: offset
+        });
+        
+        // Sử dụng trang all-handbook hiện có để hiển thị kết quả tìm kiếm
+        return res.render("main/homepage/allHandbookPagination.ejs", {
+            handbooks: results.rows,
+            total: Math.ceil(results.count / limit),
+            striptags: striptags,
+            searchTerm: keyword,
+            isSearchResults: true,
+            current: page,
+            // Xóa biến hiển thị số kết quả
+        });
+    } catch (e) {
+        console.error("Lỗi khi tìm kiếm:", e);
+        
+        return res.render("main/homepage/allHandbookPagination.ejs", {
+            handbooks: [],
+            total: 0,
+            striptags: striptags,
+            searchTerm: req.query.q || req.query.keyword || "",
+            isSearchResults: true,
+            current: 1
+        });
+    }
 };
 
 let getInfoBookingPage = async (req, res) => {
@@ -390,6 +432,25 @@ let getPageAllSpecializations = async (req, res) => {
     }
 };
 
+let getPostSearchDebug = async (req, res) => {
+    try {
+        // Kiểm tra đường dẫn đến thư mục views
+        console.log("📁 Views directory:", app.get('views'));
+        console.log("📁 Current directory:", __dirname);
+        
+        // Kiểm tra file template tồn tại không
+        const fs = require('fs');
+        const path = require('path');
+        const viewPath = path.join(app.get('views'), 'main', 'handbook', 'search-results.ejs');
+        
+        console.log("📄 Checking if view exists:", viewPath);
+        console.log("📄 View exists:", fs.existsSync(viewPath) ? "Yes" : "No");
+        
+        // Tiếp tục code...
+    } catch (e) {
+        // Xử lý lỗi...
+    }
+};
 
 module.exports = {
     getHomePage: getHomePage,

@@ -2,9 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Handbook = sequelize.define('Handbook', {
         id: {
-            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
             primaryKey: true,
-            autoIncrement: true
+            type: DataTypes.INTEGER
         },
         title: DataTypes.STRING,
         contentMarkdown: DataTypes.TEXT,
@@ -13,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         forSpecializationId: DataTypes.INTEGER,
         forClinicId: DataTypes.INTEGER,
         writerId: DataTypes.INTEGER,
-        confirmByDoctor: DataTypes.BOOLEAN,
+        confirmByDoctor: DataTypes.STRING,
         image: DataTypes.STRING,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,

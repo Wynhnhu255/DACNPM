@@ -303,11 +303,12 @@ function generateHandbookPagination(page) {
 }
 
 
-function searchElasticClient() {
+function searchClient() {
     $('#searchPostClient').on('keydown', function (event) {
         if (event.which === 13 || event.keyCode === 13) {
             let key_words = $('#searchPostClient').val();
-            window.location.href = `${window.location.origin}/posts/search?keyword=${key_words}`;
+            console.log("🔍 Tìm kiếm từ searchClient:", key_words);
+            window.location.href = `${window.location.origin}/handbook/search?q=${key_words}`;
         }
     });
 }
@@ -316,19 +317,19 @@ function searchInSearchPost() {
     $('#searchPostInSearchPageClient').on('keydown', function (event) {
         if (event.which === 13 || event.keyCode === 13) {
             let key_words = $('#searchPostInSearchPageClient').val();
-            window.location.href = `${window.location.origin}/posts/search?keyword=${key_words}`;
+            window.location.href = `${window.location.origin}/handbook/search?q=${key_words}`;
         }
-    })
+    });
 }
 
 function searchInDetailPost() {
     $('#searchInDetailPost').on('keydown', function (event) {
         if (event.which === 13 || event.keyCode === 13) {
             let key_words = $('#searchInDetailPost').val();
-            window.location.href = `${window.location.origin}/posts/search?keyword=${key_words}`;
+            console.log("🔍 Tìm kiếm từ searchInDetailPost:", key_words);
+            window.location.href = `${window.location.origin}/handbook/search?q=${key_words}`;
         }
-    })
-
+    });
 }
 
 function showExtraInfoBooking() {
@@ -684,7 +685,7 @@ $(document).ready(function (e) {
     showModalAllClinics();
     showModalAllDoctors();
     showPostsForUsers();
-    searchElasticClient();
+    searchClient();
     searchInSearchPost();
     searchInDetailPost();
     showExtraInfoBooking();
