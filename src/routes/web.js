@@ -5,7 +5,6 @@ import admin from "./../controllers/adminController";
 import doctor from "./../controllers/doctorController";
 import supporter from "./../controllers/supporterController";
 import clinic from "./../controllers/clinicController";
-import bot from "./../controllers/botFBController";
 import passport from "passport";
 import passportLocal from 'passport-local';
 import userService from "./../services/userService";
@@ -79,14 +78,6 @@ let initRoutes = (app) => {
     router.get("/all-specializations", home.getPageAllSpecializations);
     router.get('/all-packages', packageController.getAllPackages);
 
-    router.get('/webhook', bot.getWebhookFB);
-    router.post('/webhook', bot.postWebhookFB);
-
-    router.get("/set-up-bot-facebook", bot.getSetupBotFBPage);
-    router.post("/set-up-bot-facebook", bot.handleSetupBotFBPage);
-    router.get("/booking-online-messenger", bot.getBookingOnlineMessengerPage);
-    router.post("/set-info-booking-online-messenger", bot.setInfoBookingMessenger);
-
     router.get('/feedback/:id', home.getFeedbackPage);
     router.post('/feedback/create', home.postCreateFeedback);
 
@@ -123,7 +114,6 @@ let initRoutes = (app) => {
     router.get('/users/manage/supporter', auth.checkLoggedIn, admin.getSupporterPage);
     router.get('/users', auth.checkLoggedIn, home.getUserPage);
 
-    router.get('/users/manage/bot', auth.checkLoggedIn, admin.getManageBotPage);
     router.get('/users/manage/schedule-for-doctors', auth.checkLoggedIn, admin.getManageCreateScheduleForDoctorsPage);
 
     router.get('/users/manage/doctor', auth.checkLoggedIn, admin.getManageDoctor);
